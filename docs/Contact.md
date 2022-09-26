@@ -9,9 +9,9 @@
 | **first_name** | **String** | The contact&#39;s first name. | [optional] |
 | **last_name** | **String** | The contact&#39;s last name. | [optional] |
 | **account** | **String** |  | [optional] |
-| **addresses** | [**Array&lt;Address&gt;**](Address.md) |  | [optional][readonly] |
-| **email_addresses** | [**Array&lt;EmailAddress&gt;**](EmailAddress.md) |  | [optional][readonly] |
-| **phone_numbers** | [**Array&lt;PhoneNumber&gt;**](PhoneNumber.md) |  | [optional][readonly] |
+| **addresses** | [**Array&lt;Address&gt;**](Address.md) |  | [optional] |
+| **email_addresses** | [**Array&lt;EmailAddress&gt;**](EmailAddress.md) |  | [optional] |
+| **phone_numbers** | [**Array&lt;PhoneNumber&gt;**](PhoneNumber.md) |  | [optional] |
 | **last_activity_at** | **Time** | When the contact&#39;s last activity occurred. | [optional] |
 | **remote_created_at** | **Time** | When the third party&#39;s contact was created. | [optional] |
 | **remote_data** | [**Array&lt;RemoteData&gt;**](RemoteData.md) |  | [optional][readonly] |

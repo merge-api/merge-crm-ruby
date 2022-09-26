@@ -93,8 +93,8 @@ module MergeCRMClient
         :'converted_date' => :'Time',
         :'converted_contact' => :'String',
         :'converted_account' => :'String',
-        :'integration_params' => :'Hash<String, AnyType>',
-        :'linked_account_params' => :'Hash<String, AnyType>'
+        :'integration_params' => :'Hash<String, Object>',
+        :'linked_account_params' => :'Hash<String, Object>'
       }
     end
 
