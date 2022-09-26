@@ -85,8 +85,8 @@ module MergeCRMClient
         :'last_activity_at' => :'Time',
         :'remote_updated_at' => :'Time',
         :'remote_created_at' => :'Time',
-        :'integration_params' => :'Hash<String, AnyType>',
-        :'linked_account_params' => :'Hash<String, AnyType>'
+        :'integration_params' => :'Hash<String, Object>',
+        :'linked_account_params' => :'Hash<String, Object>'
       }
     end
 

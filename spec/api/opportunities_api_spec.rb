@@ -72,12 +72,38 @@ describe 'OpportunitiesApi' do
     end
   end
 
+  # unit tests for opportunities_meta_patch_retrieve
+  # Returns metadata for &#x60;Opportunity&#x60; PATCHs.
+  # @param x_account_token Token identifying the end user.
+  # @param id 
+  # @param [Hash] opts the optional parameters
+  # @return [MetaResponse]
+  describe 'opportunities_meta_patch_retrieve test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   # unit tests for opportunities_meta_post_retrieve
   # Returns metadata for &#x60;Opportunity&#x60; POSTs.
   # @param x_account_token Token identifying the end user.
   # @param [Hash] opts the optional parameters
   # @return [MetaResponse]
   describe 'opportunities_meta_post_retrieve test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for opportunities_partial_update
+  # @param x_account_token Token identifying the end user.
+  # @param id 
+  # @param patched_opportunity_endpoint_request 
+  # @param [Hash] opts the optional parameters
+  # @option opts [Boolean] :is_debug_mode Whether to include debug fields (such as log file links) in the response.
+  # @option opts [Boolean] :run_async Whether or not third-party updates should be run asynchronously.
+  # @return [OpportunityResponse]
+  describe 'opportunities_partial_update test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

@@ -27,6 +27,12 @@ module MergeCRMClient
 
     attr_accessor :account
 
+    attr_accessor :addresses
+
+    attr_accessor :email_addresses
+
+    attr_accessor :phone_numbers
+
     # When the contact's last activity occurred.
     attr_accessor :last_activity_at
 
@@ -44,6 +50,9 @@ module MergeCRMClient
         :'first_name' => :'first_name',
         :'last_name' => :'last_name',
         :'account' => :'account',
+        :'addresses' => :'addresses',
+        :'email_addresses' => :'email_addresses',
+        :'phone_numbers' => :'phone_numbers',
         :'last_activity_at' => :'last_activity_at',
         :'remote_created_at' => :'remote_created_at',
         :'integration_params' => :'integration_params',
@@ -63,10 +72,13 @@ module MergeCRMClient
         :'first_name' => :'String',
         :'last_name' => :'String',
         :'account' => :'String',
+        :'addresses' => :'Array<AddressRequest>',
+        :'email_addresses' => :'Array<EmailAddressRequest>',
+        :'phone_numbers' => :'Array<PhoneNumberRequest>',
         :'last_activity_at' => :'Time',
         :'remote_created_at' => :'Time',
-        :'integration_params' => :'Hash<String, AnyType>',
-        :'linked_account_params' => :'Hash<String, AnyType>'
+        :'integration_params' => :'Hash<String, Object>',
+        :'linked_account_params' => :'Hash<String, Object>'
       }
     end
 
@@ -115,6 +127,24 @@ module MergeCRMClient
         self.account = attributes[:'account']
       end
 
+      if attributes.key?(:'addresses')
+        if (value = attributes[:'addresses']).is_a?(Array)
+          self.addresses = value
+        end
+      end
+
+      if attributes.key?(:'email_addresses')
+        if (value = attributes[:'email_addresses']).is_a?(Array)
+          self.email_addresses = value
+        end
+      end
+
+      if attributes.key?(:'phone_numbers')
+        if (value = attributes[:'phone_numbers']).is_a?(Array)
+          self.phone_numbers = value
+        end
+      end
+
       if attributes.key?(:'last_activity_at')
         self.last_activity_at = attributes[:'last_activity_at']
       end
@@ -158,6 +188,9 @@ module MergeCRMClient
           first_name == o.first_name &&
           last_name == o.last_name &&
           account == o.account &&
+          addresses == o.addresses &&
+          email_addresses == o.email_addresses &&
+          phone_numbers == o.phone_numbers &&
           last_activity_at == o.last_activity_at &&
           remote_created_at == o.remote_created_at &&
           integration_params == o.integration_params &&
@@ -173,7 +206,7 @@ module MergeCRMClient
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [remote_id, first_name, last_name, account, last_activity_at, remote_created_at, integration_params, linked_account_params].hash
+      [remote_id, first_name, last_name, account, addresses, email_addresses, phone_numbers, last_activity_at, remote_created_at, integration_params, linked_account_params].hash
     end
 
     # Builds the object from hash

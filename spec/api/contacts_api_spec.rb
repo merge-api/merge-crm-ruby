@@ -64,19 +64,7 @@ describe 'ContactsApi' do
   # @return [PaginatedContactList]
   describe 'contacts_list test' do
     it 'should work' do
-      apiKey = "REDACTED"
-
-      acctToken = "REDACTED"
-
-      # Setup authorization
-      MergeCRMClient.configure do |config|
-        config.api_key['tokenAuth'] = apiKey
-        config.api_key_prefix['tokenAuth'] = 'Bearer'
-      end
-
-      api_instance = MergeCRMClient::ContactsApi.new
-
-      puts api_instance.contacts_list(acctToken)
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 

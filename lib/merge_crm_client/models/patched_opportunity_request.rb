@@ -14,37 +14,54 @@ require 'date'
 require 'time'
 
 module MergeCRMClient
-  # # The DataPassthrough Object ### Description The `DataPassthrough` object is used to send information to an otherwise-unsupported third-party endpoint.  ### Usage Example Create a `DataPassthrough` to get team hierarchies from your Rippling integration.
-  class DataPassthroughRequest
-    attr_accessor :method
+  # # The Opportunity Object ### Description The `Opportunity` object is used to represent an opportunity in the remote system. ### Usage Example TODO
+  class PatchedOpportunityRequest
+    # The opportunity's name.
+    attr_accessor :name
 
-    attr_accessor :path
+    # The opportunity's description.
+    attr_accessor :description
 
-    attr_accessor :base_url_override
+    # The opportunity's amount.
+    attr_accessor :amount
 
-    attr_accessor :data
+    attr_accessor :owner
 
-    # Pass an array of `MultipartFormField` objects in here instead of using the `data` param if `request_format` is set to `MULTIPART`.
-    attr_accessor :multipart_form_data
+    attr_accessor :account
 
-    # The headers to use for the request (Merge will handle the account's authorization headers). `Content-Type` header is required for passthrough. Choose content type corresponding to expected format of receiving server.
-    attr_accessor :headers
+    attr_accessor :stage
 
-    attr_accessor :request_format
+    # The opportunity's status.
+    attr_accessor :status
 
-    attr_accessor :normalize_response
+    # When the opportunity's last activity occurred.
+    attr_accessor :last_activity_at
+
+    # When the opportunity was closed.
+    attr_accessor :close_date
+
+    # When the third party's opportunity was created.
+    attr_accessor :remote_created_at
+
+    attr_accessor :integration_params
+
+    attr_accessor :linked_account_params
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'method' => :'method',
-        :'path' => :'path',
-        :'base_url_override' => :'base_url_override',
-        :'data' => :'data',
-        :'multipart_form_data' => :'multipart_form_data',
-        :'headers' => :'headers',
-        :'request_format' => :'request_format',
-        :'normalize_response' => :'normalize_response'
+        :'name' => :'name',
+        :'description' => :'description',
+        :'amount' => :'amount',
+        :'owner' => :'owner',
+        :'account' => :'account',
+        :'stage' => :'stage',
+        :'status' => :'status',
+        :'last_activity_at' => :'last_activity_at',
+        :'close_date' => :'close_date',
+        :'remote_created_at' => :'remote_created_at',
+        :'integration_params' => :'integration_params',
+        :'linked_account_params' => :'linked_account_params'
       }
     end
 
@@ -56,25 +73,36 @@ module MergeCRMClient
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'method' => :'MethodEnum',
-        :'path' => :'String',
-        :'base_url_override' => :'String',
-        :'data' => :'String',
-        :'multipart_form_data' => :'Array<MultipartFormFieldRequest>',
-        :'headers' => :'Hash<String, Object>',
-        :'request_format' => :'RequestFormatEnum',
-        :'normalize_response' => :'Boolean'
+        :'name' => :'String',
+        :'description' => :'String',
+        :'amount' => :'Integer',
+        :'owner' => :'String',
+        :'account' => :'String',
+        :'stage' => :'String',
+        :'status' => :'OpportunityStatusEnum',
+        :'last_activity_at' => :'Time',
+        :'close_date' => :'Time',
+        :'remote_created_at' => :'Time',
+        :'integration_params' => :'Hash<String, Object>',
+        :'linked_account_params' => :'Hash<String, Object>'
       }
     end
 
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
-        :'base_url_override',
-        :'data',
-        :'multipart_form_data',
-        :'headers',
-        :'request_format',
+        :'name',
+        :'description',
+        :'amount',
+        :'owner',
+        :'account',
+        :'stage',
+        :'status',
+        :'last_activity_at',
+        :'close_date',
+        :'remote_created_at',
+        :'integration_params',
+        :'linked_account_params'
       ])
     end
 
@@ -82,51 +110,67 @@ module MergeCRMClient
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `MergeCRMClient::DataPassthroughRequest` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `MergeCRMClient::PatchedOpportunityRequest` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `MergeCRMClient::DataPassthroughRequest`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `MergeCRMClient::PatchedOpportunityRequest`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'method')
-        self.method = attributes[:'method']
+      if attributes.key?(:'name')
+        self.name = attributes[:'name']
       end
 
-      if attributes.key?(:'path')
-        self.path = attributes[:'path']
+      if attributes.key?(:'description')
+        self.description = attributes[:'description']
       end
 
-      if attributes.key?(:'base_url_override')
-        self.base_url_override = attributes[:'base_url_override']
+      if attributes.key?(:'amount')
+        self.amount = attributes[:'amount']
       end
 
-      if attributes.key?(:'data')
-        self.data = attributes[:'data']
+      if attributes.key?(:'owner')
+        self.owner = attributes[:'owner']
       end
 
-      if attributes.key?(:'multipart_form_data')
-        if (value = attributes[:'multipart_form_data']).is_a?(Array)
-          self.multipart_form_data = value
+      if attributes.key?(:'account')
+        self.account = attributes[:'account']
+      end
+
+      if attributes.key?(:'stage')
+        self.stage = attributes[:'stage']
+      end
+
+      if attributes.key?(:'status')
+        self.status = attributes[:'status']
+      end
+
+      if attributes.key?(:'last_activity_at')
+        self.last_activity_at = attributes[:'last_activity_at']
+      end
+
+      if attributes.key?(:'close_date')
+        self.close_date = attributes[:'close_date']
+      end
+
+      if attributes.key?(:'remote_created_at')
+        self.remote_created_at = attributes[:'remote_created_at']
+      end
+
+      if attributes.key?(:'integration_params')
+        if (value = attributes[:'integration_params']).is_a?(Hash)
+          self.integration_params = value
         end
       end
 
-      if attributes.key?(:'headers')
-        if (value = attributes[:'headers']).is_a?(Hash)
-          self.headers = value
+      if attributes.key?(:'linked_account_params')
+        if (value = attributes[:'linked_account_params']).is_a?(Hash)
+          self.linked_account_params = value
         end
-      end
-
-      if attributes.key?(:'request_format')
-        self.request_format = attributes[:'request_format']
-      end
-
-      if attributes.key?(:'normalize_response')
-        self.normalize_response = attributes[:'normalize_response']
       end
     end
 
@@ -134,24 +178,12 @@ module MergeCRMClient
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if @method.nil?
-        invalid_properties.push('invalid value for "method", method cannot be nil.')
+      if !@amount.nil? && @amount > 2147483647
+        invalid_properties.push('invalid value for "amount", must be smaller than or equal to 2147483647.')
       end
 
-      if @path.nil?
-        invalid_properties.push('invalid value for "path", path cannot be nil.')
-      end
-
-      if @path.to_s.length < 1
-        invalid_properties.push('invalid value for "path", the character length must be great than or equal to 1.')
-      end
-
-      if !@base_url_override.nil? && @base_url_override.to_s.length < 1
-        invalid_properties.push('invalid value for "base_url_override", the character length must be great than or equal to 1.')
-      end
-
-      if !@data.nil? && @data.to_s.length < 1
-        invalid_properties.push('invalid value for "data", the character length must be great than or equal to 1.')
+      if !@amount.nil? && @amount < -2147483648
+        invalid_properties.push('invalid value for "amount", must be greater than or equal to -2147483648.')
       end
 
       invalid_properties
@@ -160,46 +192,23 @@ module MergeCRMClient
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if @method.nil?
-      return false if @path.nil?
-      return false if @path.to_s.length < 1
-      return false if !@base_url_override.nil? && @base_url_override.to_s.length < 1
-      return false if !@data.nil? && @data.to_s.length < 1
+      return false if !@amount.nil? && @amount > 2147483647
+      return false if !@amount.nil? && @amount < -2147483648
       true
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] path Value to be assigned
-    def path=(path)
-      if path.nil?
-        fail ArgumentError, 'path cannot be nil'
+    # @param [Object] amount Value to be assigned
+    def amount=(amount)
+      if !amount.nil? && amount > 2147483647
+        fail ArgumentError, 'invalid value for "amount", must be smaller than or equal to 2147483647.'
       end
 
-      if path.to_s.length < 1
-        fail ArgumentError, 'invalid value for "path", the character length must be great than or equal to 1.'
+      if !amount.nil? && amount < -2147483648
+        fail ArgumentError, 'invalid value for "amount", must be greater than or equal to -2147483648.'
       end
 
-      @path = path
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] base_url_override Value to be assigned
-    def base_url_override=(base_url_override)
-      if !base_url_override.nil? && base_url_override.to_s.length < 1
-        fail ArgumentError, 'invalid value for "base_url_override", the character length must be great than or equal to 1.'
-      end
-
-      @base_url_override = base_url_override
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] data Value to be assigned
-    def data=(data)
-      if !data.nil? && data.to_s.length < 1
-        fail ArgumentError, 'invalid value for "data", the character length must be great than or equal to 1.'
-      end
-
-      @data = data
+      @amount = amount
     end
 
     # Checks equality by comparing each attribute.
@@ -207,14 +216,18 @@ module MergeCRMClient
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          method == o.method &&
-          path == o.path &&
-          base_url_override == o.base_url_override &&
-          data == o.data &&
-          multipart_form_data == o.multipart_form_data &&
-          headers == o.headers &&
-          request_format == o.request_format &&
-          normalize_response == o.normalize_response
+          name == o.name &&
+          description == o.description &&
+          amount == o.amount &&
+          owner == o.owner &&
+          account == o.account &&
+          stage == o.stage &&
+          status == o.status &&
+          last_activity_at == o.last_activity_at &&
+          close_date == o.close_date &&
+          remote_created_at == o.remote_created_at &&
+          integration_params == o.integration_params &&
+          linked_account_params == o.linked_account_params
     end
 
     # @see the `==` method
@@ -226,7 +239,7 @@ module MergeCRMClient
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [method, path, base_url_override, data, multipart_form_data, headers, request_format, normalize_response].hash
+      [name, description, amount, owner, account, stage, status, last_activity_at, close_date, remote_created_at, integration_params, linked_account_params].hash
     end
 
     # Builds the object from hash
