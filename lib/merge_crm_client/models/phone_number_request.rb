@@ -22,11 +22,17 @@ module MergeCRMClient
     # The phone number's type.
     attr_accessor :phone_number_type
 
+    attr_accessor :integration_params
+
+    attr_accessor :linked_account_params
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'phone_number' => :'phone_number',
-        :'phone_number_type' => :'phone_number_type'
+        :'phone_number_type' => :'phone_number_type',
+        :'integration_params' => :'integration_params',
+        :'linked_account_params' => :'linked_account_params'
       }
     end
 
@@ -39,7 +45,9 @@ module MergeCRMClient
     def self.openapi_types
       {
         :'phone_number' => :'String',
-        :'phone_number_type' => :'String'
+        :'phone_number_type' => :'String',
+        :'integration_params' => :'Hash<String, Object>',
+        :'linked_account_params' => :'Hash<String, Object>'
       }
     end
 
@@ -47,7 +55,9 @@ module MergeCRMClient
     def self.openapi_nullable
       Set.new([
         :'phone_number',
-        :'phone_number_type'
+        :'phone_number_type',
+        :'integration_params',
+        :'linked_account_params'
       ])
     end
 
@@ -73,6 +83,18 @@ module MergeCRMClient
       if attributes.key?(:'phone_number_type')
         self.phone_number_type = attributes[:'phone_number_type']
       end
+
+      if attributes.key?(:'integration_params')
+        if (value = attributes[:'integration_params']).is_a?(Hash)
+          self.integration_params = value
+        end
+      end
+
+      if attributes.key?(:'linked_account_params')
+        if (value = attributes[:'linked_account_params']).is_a?(Hash)
+          self.linked_account_params = value
+        end
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -94,7 +116,9 @@ module MergeCRMClient
       return true if self.equal?(o)
       self.class == o.class &&
           phone_number == o.phone_number &&
-          phone_number_type == o.phone_number_type
+          phone_number_type == o.phone_number_type &&
+          integration_params == o.integration_params &&
+          linked_account_params == o.linked_account_params
     end
 
     # @see the `==` method
@@ -106,7 +130,7 @@ module MergeCRMClient
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [phone_number, phone_number_type].hash
+      [phone_number, phone_number_type, integration_params, linked_account_params].hash
     end
 
     # Builds the object from hash

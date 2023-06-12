@@ -87,19 +87,45 @@ Class | Method | HTTP request | Description
 *MergeCRMClient::AccountTokenApi* | [**account_token_retrieve**](docs/AccountTokenApi.md#account_token_retrieve) | **GET** /account-token/{public_token} | 
 *MergeCRMClient::AccountsApi* | [**accounts_create**](docs/AccountsApi.md#accounts_create) | **POST** /accounts | 
 *MergeCRMClient::AccountsApi* | [**accounts_list**](docs/AccountsApi.md#accounts_list) | **GET** /accounts | 
+*MergeCRMClient::AccountsApi* | [**accounts_meta_patch_retrieve**](docs/AccountsApi.md#accounts_meta_patch_retrieve) | **GET** /accounts/meta/patch/{id} | 
 *MergeCRMClient::AccountsApi* | [**accounts_meta_post_retrieve**](docs/AccountsApi.md#accounts_meta_post_retrieve) | **GET** /accounts/meta/post | 
+*MergeCRMClient::AccountsApi* | [**accounts_partial_update**](docs/AccountsApi.md#accounts_partial_update) | **PATCH** /accounts/{id} | 
+*MergeCRMClient::AccountsApi* | [**accounts_remote_field_classes_list**](docs/AccountsApi.md#accounts_remote_field_classes_list) | **GET** /accounts/remote-field-classes | 
 *MergeCRMClient::AccountsApi* | [**accounts_retrieve**](docs/AccountsApi.md#accounts_retrieve) | **GET** /accounts/{id} | 
+*MergeCRMClient::AssociationTypesApi* | [**custom_object_classes_association_types_create**](docs/AssociationTypesApi.md#custom_object_classes_association_types_create) | **POST** /custom-object-classes/{custom_object_class_id}/association-types | 
+*MergeCRMClient::AssociationTypesApi* | [**custom_object_classes_association_types_list**](docs/AssociationTypesApi.md#custom_object_classes_association_types_list) | **GET** /custom-object-classes/{custom_object_class_id}/association-types | 
+*MergeCRMClient::AssociationTypesApi* | [**custom_object_classes_association_types_meta_post_retrieve**](docs/AssociationTypesApi.md#custom_object_classes_association_types_meta_post_retrieve) | **GET** /custom-object-classes/{custom_object_class_id}/association-types/meta/post | 
+*MergeCRMClient::AssociationTypesApi* | [**custom_object_classes_association_types_retrieve**](docs/AssociationTypesApi.md#custom_object_classes_association_types_retrieve) | **GET** /custom-object-classes/{custom_object_class_id}/association-types/{id} | 
+*MergeCRMClient::AssociationsApi* | [**custom_object_classes_custom_objects_associations_list**](docs/AssociationsApi.md#custom_object_classes_custom_objects_associations_list) | **GET** /custom-object-classes/{custom_object_class_id}/custom-objects/{object_id}/associations | 
+*MergeCRMClient::AssociationsApi* | [**custom_object_classes_custom_objects_associations_update**](docs/AssociationsApi.md#custom_object_classes_custom_objects_associations_update) | **PUT** /custom-object-classes/{source_class_id}/custom-objects/{source_object_id}/associations/{target_class_id}/{target_object_id}/{association_type_id} | 
 *MergeCRMClient::AvailableActionsApi* | [**available_actions_retrieve**](docs/AvailableActionsApi.md#available_actions_retrieve) | **GET** /available-actions | 
 *MergeCRMClient::ContactsApi* | [**contacts_create**](docs/ContactsApi.md#contacts_create) | **POST** /contacts | 
+*MergeCRMClient::ContactsApi* | [**contacts_ignore_create**](docs/ContactsApi.md#contacts_ignore_create) | **POST** /contacts/ignore/{model_id} | 
 *MergeCRMClient::ContactsApi* | [**contacts_list**](docs/ContactsApi.md#contacts_list) | **GET** /contacts | 
+*MergeCRMClient::ContactsApi* | [**contacts_meta_patch_retrieve**](docs/ContactsApi.md#contacts_meta_patch_retrieve) | **GET** /contacts/meta/patch/{id} | 
 *MergeCRMClient::ContactsApi* | [**contacts_meta_post_retrieve**](docs/ContactsApi.md#contacts_meta_post_retrieve) | **GET** /contacts/meta/post | 
+*MergeCRMClient::ContactsApi* | [**contacts_partial_update**](docs/ContactsApi.md#contacts_partial_update) | **PATCH** /contacts/{id} | 
+*MergeCRMClient::ContactsApi* | [**contacts_remote_field_classes_list**](docs/ContactsApi.md#contacts_remote_field_classes_list) | **GET** /contacts/remote-field-classes | 
 *MergeCRMClient::ContactsApi* | [**contacts_retrieve**](docs/ContactsApi.md#contacts_retrieve) | **GET** /contacts/{id} | 
+*MergeCRMClient::CustomObjectClassesApi* | [**custom_object_classes_generator_update**](docs/CustomObjectClassesApi.md#custom_object_classes_generator_update) | **PUT** /custom-object-classes/generator/{generator_id} | 
+*MergeCRMClient::CustomObjectClassesApi* | [**custom_object_classes_list**](docs/CustomObjectClassesApi.md#custom_object_classes_list) | **GET** /custom-object-classes | 
+*MergeCRMClient::CustomObjectClassesApi* | [**custom_object_classes_retrieve**](docs/CustomObjectClassesApi.md#custom_object_classes_retrieve) | **GET** /custom-object-classes/{id} | 
+*MergeCRMClient::CustomObjectsApi* | [**custom_object_classes_custom_objects_create**](docs/CustomObjectsApi.md#custom_object_classes_custom_objects_create) | **POST** /custom-object-classes/{custom_object_class_id}/custom-objects | 
+*MergeCRMClient::CustomObjectsApi* | [**custom_object_classes_custom_objects_list**](docs/CustomObjectsApi.md#custom_object_classes_custom_objects_list) | **GET** /custom-object-classes/{custom_object_class_id}/custom-objects | 
+*MergeCRMClient::CustomObjectsApi* | [**custom_object_classes_custom_objects_meta_patch_retrieve**](docs/CustomObjectsApi.md#custom_object_classes_custom_objects_meta_patch_retrieve) | **GET** /custom-object-classes/{custom_object_class_id}/custom-objects/meta/patch/{id} | 
+*MergeCRMClient::CustomObjectsApi* | [**custom_object_classes_custom_objects_meta_post_retrieve**](docs/CustomObjectsApi.md#custom_object_classes_custom_objects_meta_post_retrieve) | **GET** /custom-object-classes/{custom_object_class_id}/custom-objects/meta/post | 
+*MergeCRMClient::CustomObjectsApi* | [**custom_object_classes_custom_objects_partial_update**](docs/CustomObjectsApi.md#custom_object_classes_custom_objects_partial_update) | **PATCH** /custom-object-classes/{custom_object_class_id}/custom-objects/{id} | 
+*MergeCRMClient::CustomObjectsApi* | [**custom_object_classes_custom_objects_retrieve**](docs/CustomObjectsApi.md#custom_object_classes_custom_objects_retrieve) | **GET** /custom-object-classes/{custom_object_class_id}/custom-objects/{id} | 
 *MergeCRMClient::DeleteAccountApi* | [**delete_account_create**](docs/DeleteAccountApi.md#delete_account_create) | **POST** /delete-account | 
 *MergeCRMClient::EngagementTypesApi* | [**engagement_types_list**](docs/EngagementTypesApi.md#engagement_types_list) | **GET** /engagement-types | 
+*MergeCRMClient::EngagementTypesApi* | [**engagement_types_remote_field_classes_list**](docs/EngagementTypesApi.md#engagement_types_remote_field_classes_list) | **GET** /engagement-types/remote-field-classes | 
 *MergeCRMClient::EngagementTypesApi* | [**engagement_types_retrieve**](docs/EngagementTypesApi.md#engagement_types_retrieve) | **GET** /engagement-types/{id} | 
 *MergeCRMClient::EngagementsApi* | [**engagements_create**](docs/EngagementsApi.md#engagements_create) | **POST** /engagements | 
 *MergeCRMClient::EngagementsApi* | [**engagements_list**](docs/EngagementsApi.md#engagements_list) | **GET** /engagements | 
+*MergeCRMClient::EngagementsApi* | [**engagements_meta_patch_retrieve**](docs/EngagementsApi.md#engagements_meta_patch_retrieve) | **GET** /engagements/meta/patch/{id} | 
 *MergeCRMClient::EngagementsApi* | [**engagements_meta_post_retrieve**](docs/EngagementsApi.md#engagements_meta_post_retrieve) | **GET** /engagements/meta/post | 
+*MergeCRMClient::EngagementsApi* | [**engagements_partial_update**](docs/EngagementsApi.md#engagements_partial_update) | **PATCH** /engagements/{id} | 
+*MergeCRMClient::EngagementsApi* | [**engagements_remote_field_classes_list**](docs/EngagementsApi.md#engagements_remote_field_classes_list) | **GET** /engagements/remote-field-classes | 
 *MergeCRMClient::EngagementsApi* | [**engagements_retrieve**](docs/EngagementsApi.md#engagements_retrieve) | **GET** /engagements/{id} | 
 *MergeCRMClient::ForceResyncApi* | [**sync_status_resync_create**](docs/ForceResyncApi.md#sync_status_resync_create) | **POST** /sync-status/resync | 
 *MergeCRMClient::GenerateKeyApi* | [**generate_key_create**](docs/GenerateKeyApi.md#generate_key_create) | **POST** /generate-key | 
@@ -108,27 +134,41 @@ Class | Method | HTTP request | Description
 *MergeCRMClient::LeadsApi* | [**leads_create**](docs/LeadsApi.md#leads_create) | **POST** /leads | 
 *MergeCRMClient::LeadsApi* | [**leads_list**](docs/LeadsApi.md#leads_list) | **GET** /leads | 
 *MergeCRMClient::LeadsApi* | [**leads_meta_post_retrieve**](docs/LeadsApi.md#leads_meta_post_retrieve) | **GET** /leads/meta/post | 
+*MergeCRMClient::LeadsApi* | [**leads_remote_field_classes_list**](docs/LeadsApi.md#leads_remote_field_classes_list) | **GET** /leads/remote-field-classes | 
 *MergeCRMClient::LeadsApi* | [**leads_retrieve**](docs/LeadsApi.md#leads_retrieve) | **GET** /leads/{id} | 
 *MergeCRMClient::LinkTokenApi* | [**link_token_create**](docs/LinkTokenApi.md#link_token_create) | **POST** /link-token | 
 *MergeCRMClient::LinkedAccountsApi* | [**linked_accounts_list**](docs/LinkedAccountsApi.md#linked_accounts_list) | **GET** /linked-accounts | 
 *MergeCRMClient::NotesApi* | [**notes_create**](docs/NotesApi.md#notes_create) | **POST** /notes | 
 *MergeCRMClient::NotesApi* | [**notes_list**](docs/NotesApi.md#notes_list) | **GET** /notes | 
 *MergeCRMClient::NotesApi* | [**notes_meta_post_retrieve**](docs/NotesApi.md#notes_meta_post_retrieve) | **GET** /notes/meta/post | 
+*MergeCRMClient::NotesApi* | [**notes_remote_field_classes_list**](docs/NotesApi.md#notes_remote_field_classes_list) | **GET** /notes/remote-field-classes | 
 *MergeCRMClient::NotesApi* | [**notes_retrieve**](docs/NotesApi.md#notes_retrieve) | **GET** /notes/{id} | 
 *MergeCRMClient::OpportunitiesApi* | [**opportunities_create**](docs/OpportunitiesApi.md#opportunities_create) | **POST** /opportunities | 
 *MergeCRMClient::OpportunitiesApi* | [**opportunities_list**](docs/OpportunitiesApi.md#opportunities_list) | **GET** /opportunities | 
 *MergeCRMClient::OpportunitiesApi* | [**opportunities_meta_patch_retrieve**](docs/OpportunitiesApi.md#opportunities_meta_patch_retrieve) | **GET** /opportunities/meta/patch/{id} | 
 *MergeCRMClient::OpportunitiesApi* | [**opportunities_meta_post_retrieve**](docs/OpportunitiesApi.md#opportunities_meta_post_retrieve) | **GET** /opportunities/meta/post | 
 *MergeCRMClient::OpportunitiesApi* | [**opportunities_partial_update**](docs/OpportunitiesApi.md#opportunities_partial_update) | **PATCH** /opportunities/{id} | 
+*MergeCRMClient::OpportunitiesApi* | [**opportunities_remote_field_classes_list**](docs/OpportunitiesApi.md#opportunities_remote_field_classes_list) | **GET** /opportunities/remote-field-classes | 
 *MergeCRMClient::OpportunitiesApi* | [**opportunities_retrieve**](docs/OpportunitiesApi.md#opportunities_retrieve) | **GET** /opportunities/{id} | 
 *MergeCRMClient::PassthroughApi* | [**passthrough_create**](docs/PassthroughApi.md#passthrough_create) | **POST** /passthrough | 
 *MergeCRMClient::RegenerateKeyApi* | [**regenerate_key_create**](docs/RegenerateKeyApi.md#regenerate_key_create) | **POST** /regenerate-key | 
+*MergeCRMClient::SelectiveSyncApi* | [**selective_sync_configurations_list**](docs/SelectiveSyncApi.md#selective_sync_configurations_list) | **GET** /selective-sync/configurations | 
+*MergeCRMClient::SelectiveSyncApi* | [**selective_sync_configurations_update**](docs/SelectiveSyncApi.md#selective_sync_configurations_update) | **PUT** /selective-sync/configurations | 
+*MergeCRMClient::SelectiveSyncApi* | [**selective_sync_meta_list**](docs/SelectiveSyncApi.md#selective_sync_meta_list) | **GET** /selective-sync/meta | 
 *MergeCRMClient::StagesApi* | [**stages_list**](docs/StagesApi.md#stages_list) | **GET** /stages | 
+*MergeCRMClient::StagesApi* | [**stages_remote_field_classes_list**](docs/StagesApi.md#stages_remote_field_classes_list) | **GET** /stages/remote-field-classes | 
 *MergeCRMClient::StagesApi* | [**stages_retrieve**](docs/StagesApi.md#stages_retrieve) | **GET** /stages/{id} | 
 *MergeCRMClient::SyncStatusApi* | [**sync_status_list**](docs/SyncStatusApi.md#sync_status_list) | **GET** /sync-status | 
+*MergeCRMClient::TasksApi* | [**tasks_create**](docs/TasksApi.md#tasks_create) | **POST** /tasks | 
 *MergeCRMClient::TasksApi* | [**tasks_list**](docs/TasksApi.md#tasks_list) | **GET** /tasks | 
+*MergeCRMClient::TasksApi* | [**tasks_meta_patch_retrieve**](docs/TasksApi.md#tasks_meta_patch_retrieve) | **GET** /tasks/meta/patch/{id} | 
+*MergeCRMClient::TasksApi* | [**tasks_meta_post_retrieve**](docs/TasksApi.md#tasks_meta_post_retrieve) | **GET** /tasks/meta/post | 
+*MergeCRMClient::TasksApi* | [**tasks_partial_update**](docs/TasksApi.md#tasks_partial_update) | **PATCH** /tasks/{id} | 
+*MergeCRMClient::TasksApi* | [**tasks_remote_field_classes_list**](docs/TasksApi.md#tasks_remote_field_classes_list) | **GET** /tasks/remote-field-classes | 
 *MergeCRMClient::TasksApi* | [**tasks_retrieve**](docs/TasksApi.md#tasks_retrieve) | **GET** /tasks/{id} | 
+*MergeCRMClient::UsersApi* | [**users_ignore_create**](docs/UsersApi.md#users_ignore_create) | **POST** /users/ignore/{model_id} | 
 *MergeCRMClient::UsersApi* | [**users_list**](docs/UsersApi.md#users_list) | **GET** /users | 
+*MergeCRMClient::UsersApi* | [**users_remote_field_classes_list**](docs/UsersApi.md#users_remote_field_classes_list) | **GET** /users/remote-field-classes | 
 *MergeCRMClient::UsersApi* | [**users_retrieve**](docs/UsersApi.md#users_retrieve) | **GET** /users/{id} | 
 *MergeCRMClient::WebhookReceiversApi* | [**webhook_receivers_create**](docs/WebhookReceiversApi.md#webhook_receivers_create) | **POST** /webhook-receivers | 
 *MergeCRMClient::WebhookReceiversApi* | [**webhook_receivers_list**](docs/WebhookReceiversApi.md#webhook_receivers_list) | **GET** /webhook-receivers | 
@@ -148,22 +188,38 @@ Class | Method | HTTP request | Description
  - [MergeCRMClient::Address](docs/Address.md)
  - [MergeCRMClient::AddressRequest](docs/AddressRequest.md)
  - [MergeCRMClient::AddressTypeEnum](docs/AddressTypeEnum.md)
+ - [MergeCRMClient::Association](docs/Association.md)
+ - [MergeCRMClient::AssociationSubType](docs/AssociationSubType.md)
+ - [MergeCRMClient::AssociationType](docs/AssociationType.md)
+ - [MergeCRMClient::AssociationTypeRequestRequest](docs/AssociationTypeRequestRequest.md)
  - [MergeCRMClient::AvailableActions](docs/AvailableActions.md)
  - [MergeCRMClient::CRMAccountEndpointRequest](docs/CRMAccountEndpointRequest.md)
  - [MergeCRMClient::CRMAccountResponse](docs/CRMAccountResponse.md)
+ - [MergeCRMClient::CRMAssociationTypeEndpointRequest](docs/CRMAssociationTypeEndpointRequest.md)
+ - [MergeCRMClient::CRMAssociationTypeResponse](docs/CRMAssociationTypeResponse.md)
  - [MergeCRMClient::CRMContactEndpointRequest](docs/CRMContactEndpointRequest.md)
  - [MergeCRMClient::CRMContactResponse](docs/CRMContactResponse.md)
+ - [MergeCRMClient::CRMCustomObjectEndpointRequest](docs/CRMCustomObjectEndpointRequest.md)
+ - [MergeCRMClient::CRMCustomObjectResponse](docs/CRMCustomObjectResponse.md)
+ - [MergeCRMClient::CardinalityEnum](docs/CardinalityEnum.md)
  - [MergeCRMClient::CategoriesEnum](docs/CategoriesEnum.md)
  - [MergeCRMClient::CategoryEnum](docs/CategoryEnum.md)
+ - [MergeCRMClient::CommonModelScopesBodyRequest](docs/CommonModelScopesBodyRequest.md)
+ - [MergeCRMClient::ConditionSchema](docs/ConditionSchema.md)
+ - [MergeCRMClient::ConditionTypeEnum](docs/ConditionTypeEnum.md)
  - [MergeCRMClient::Contact](docs/Contact.md)
  - [MergeCRMClient::ContactRequest](docs/ContactRequest.md)
  - [MergeCRMClient::CountryEnum](docs/CountryEnum.md)
+ - [MergeCRMClient::CustomObject](docs/CustomObject.md)
+ - [MergeCRMClient::CustomObjectClass](docs/CustomObjectClass.md)
+ - [MergeCRMClient::CustomObjectRequest](docs/CustomObjectRequest.md)
  - [MergeCRMClient::DataPassthroughRequest](docs/DataPassthroughRequest.md)
  - [MergeCRMClient::DebugModeLog](docs/DebugModeLog.md)
  - [MergeCRMClient::DebugModelLogSummary](docs/DebugModelLogSummary.md)
  - [MergeCRMClient::DirectionEnum](docs/DirectionEnum.md)
  - [MergeCRMClient::EmailAddress](docs/EmailAddress.md)
  - [MergeCRMClient::EmailAddressRequest](docs/EmailAddressRequest.md)
+ - [MergeCRMClient::EnabledActionsEnum](docs/EnabledActionsEnum.md)
  - [MergeCRMClient::EncodingEnum](docs/EncodingEnum.md)
  - [MergeCRMClient::EndUserDetailsRequest](docs/EndUserDetailsRequest.md)
  - [MergeCRMClient::Engagement](docs/Engagement.md)
@@ -172,14 +228,23 @@ Class | Method | HTTP request | Description
  - [MergeCRMClient::EngagementResponse](docs/EngagementResponse.md)
  - [MergeCRMClient::EngagementType](docs/EngagementType.md)
  - [MergeCRMClient::ErrorValidationProblem](docs/ErrorValidationProblem.md)
+ - [MergeCRMClient::FieldFormatEnum](docs/FieldFormatEnum.md)
+ - [MergeCRMClient::FieldTypeEnum](docs/FieldTypeEnum.md)
  - [MergeCRMClient::GenerateRemoteKeyRequest](docs/GenerateRemoteKeyRequest.md)
+ - [MergeCRMClient::IgnoreCommonModelRequest](docs/IgnoreCommonModelRequest.md)
  - [MergeCRMClient::Issue](docs/Issue.md)
  - [MergeCRMClient::IssueStatusEnum](docs/IssueStatusEnum.md)
+ - [MergeCRMClient::ItemSchema](docs/ItemSchema.md)
  - [MergeCRMClient::Lead](docs/Lead.md)
  - [MergeCRMClient::LeadEndpointRequest](docs/LeadEndpointRequest.md)
  - [MergeCRMClient::LeadRequest](docs/LeadRequest.md)
  - [MergeCRMClient::LeadResponse](docs/LeadResponse.md)
  - [MergeCRMClient::LinkToken](docs/LinkToken.md)
+ - [MergeCRMClient::LinkedAccountCondition](docs/LinkedAccountCondition.md)
+ - [MergeCRMClient::LinkedAccountConditionRequest](docs/LinkedAccountConditionRequest.md)
+ - [MergeCRMClient::LinkedAccountSelectiveSyncConfiguration](docs/LinkedAccountSelectiveSyncConfiguration.md)
+ - [MergeCRMClient::LinkedAccountSelectiveSyncConfigurationListRequest](docs/LinkedAccountSelectiveSyncConfigurationListRequest.md)
+ - [MergeCRMClient::LinkedAccountSelectiveSyncConfigurationRequest](docs/LinkedAccountSelectiveSyncConfigurationRequest.md)
  - [MergeCRMClient::LinkedAccountStatus](docs/LinkedAccountStatus.md)
  - [MergeCRMClient::MetaResponse](docs/MetaResponse.md)
  - [MergeCRMClient::MethodEnum](docs/MethodEnum.md)
@@ -189,38 +254,66 @@ Class | Method | HTTP request | Description
  - [MergeCRMClient::NoteEndpointRequest](docs/NoteEndpointRequest.md)
  - [MergeCRMClient::NoteRequest](docs/NoteRequest.md)
  - [MergeCRMClient::NoteResponse](docs/NoteResponse.md)
+ - [MergeCRMClient::ObjectClassDescriptionRequest](docs/ObjectClassDescriptionRequest.md)
+ - [MergeCRMClient::OperatorSchema](docs/OperatorSchema.md)
  - [MergeCRMClient::Opportunity](docs/Opportunity.md)
  - [MergeCRMClient::OpportunityEndpointRequest](docs/OpportunityEndpointRequest.md)
  - [MergeCRMClient::OpportunityRequest](docs/OpportunityRequest.md)
  - [MergeCRMClient::OpportunityResponse](docs/OpportunityResponse.md)
  - [MergeCRMClient::OpportunityStatusEnum](docs/OpportunityStatusEnum.md)
+ - [MergeCRMClient::OriginTypeEnum](docs/OriginTypeEnum.md)
  - [MergeCRMClient::PaginatedAccountDetailsAndActionsList](docs/PaginatedAccountDetailsAndActionsList.md)
  - [MergeCRMClient::PaginatedAccountList](docs/PaginatedAccountList.md)
+ - [MergeCRMClient::PaginatedAssociationList](docs/PaginatedAssociationList.md)
+ - [MergeCRMClient::PaginatedAssociationTypeList](docs/PaginatedAssociationTypeList.md)
+ - [MergeCRMClient::PaginatedConditionSchemaList](docs/PaginatedConditionSchemaList.md)
  - [MergeCRMClient::PaginatedContactList](docs/PaginatedContactList.md)
+ - [MergeCRMClient::PaginatedCustomObjectClassList](docs/PaginatedCustomObjectClassList.md)
+ - [MergeCRMClient::PaginatedCustomObjectList](docs/PaginatedCustomObjectList.md)
  - [MergeCRMClient::PaginatedEngagementList](docs/PaginatedEngagementList.md)
  - [MergeCRMClient::PaginatedEngagementTypeList](docs/PaginatedEngagementTypeList.md)
  - [MergeCRMClient::PaginatedIssueList](docs/PaginatedIssueList.md)
  - [MergeCRMClient::PaginatedLeadList](docs/PaginatedLeadList.md)
  - [MergeCRMClient::PaginatedNoteList](docs/PaginatedNoteList.md)
  - [MergeCRMClient::PaginatedOpportunityList](docs/PaginatedOpportunityList.md)
+ - [MergeCRMClient::PaginatedRemoteFieldClassList](docs/PaginatedRemoteFieldClassList.md)
  - [MergeCRMClient::PaginatedStageList](docs/PaginatedStageList.md)
  - [MergeCRMClient::PaginatedSyncStatusList](docs/PaginatedSyncStatusList.md)
  - [MergeCRMClient::PaginatedTaskList](docs/PaginatedTaskList.md)
  - [MergeCRMClient::PaginatedUserList](docs/PaginatedUserList.md)
+ - [MergeCRMClient::PatchedAccountRequest](docs/PatchedAccountRequest.md)
+ - [MergeCRMClient::PatchedCRMAccountEndpointRequest](docs/PatchedCRMAccountEndpointRequest.md)
+ - [MergeCRMClient::PatchedCRMContactEndpointRequest](docs/PatchedCRMContactEndpointRequest.md)
+ - [MergeCRMClient::PatchedCRMCustomObjectEndpointRequest](docs/PatchedCRMCustomObjectEndpointRequest.md)
+ - [MergeCRMClient::PatchedContactRequest](docs/PatchedContactRequest.md)
+ - [MergeCRMClient::PatchedEngagementEndpointRequest](docs/PatchedEngagementEndpointRequest.md)
+ - [MergeCRMClient::PatchedEngagementRequest](docs/PatchedEngagementRequest.md)
  - [MergeCRMClient::PatchedOpportunityEndpointRequest](docs/PatchedOpportunityEndpointRequest.md)
  - [MergeCRMClient::PatchedOpportunityRequest](docs/PatchedOpportunityRequest.md)
+ - [MergeCRMClient::PatchedTaskEndpointRequest](docs/PatchedTaskEndpointRequest.md)
+ - [MergeCRMClient::PatchedTaskRequest](docs/PatchedTaskRequest.md)
  - [MergeCRMClient::PhoneNumber](docs/PhoneNumber.md)
  - [MergeCRMClient::PhoneNumberRequest](docs/PhoneNumberRequest.md)
+ - [MergeCRMClient::ReasonEnum](docs/ReasonEnum.md)
  - [MergeCRMClient::RemoteData](docs/RemoteData.md)
+ - [MergeCRMClient::RemoteField](docs/RemoteField.md)
+ - [MergeCRMClient::RemoteFieldClass](docs/RemoteFieldClass.md)
+ - [MergeCRMClient::RemoteFieldClassForCustomObjectClass](docs/RemoteFieldClassForCustomObjectClass.md)
+ - [MergeCRMClient::RemoteFieldClassForCustomObjectClassItemSchema](docs/RemoteFieldClassForCustomObjectClassItemSchema.md)
+ - [MergeCRMClient::RemoteFieldRequest](docs/RemoteFieldRequest.md)
  - [MergeCRMClient::RemoteKey](docs/RemoteKey.md)
  - [MergeCRMClient::RemoteKeyForRegenerationRequest](docs/RemoteKeyForRegenerationRequest.md)
  - [MergeCRMClient::RemoteResponse](docs/RemoteResponse.md)
  - [MergeCRMClient::RequestFormatEnum](docs/RequestFormatEnum.md)
  - [MergeCRMClient::ResponseTypeEnum](docs/ResponseTypeEnum.md)
+ - [MergeCRMClient::SelectiveSyncConfigurationsUsageEnum](docs/SelectiveSyncConfigurationsUsageEnum.md)
  - [MergeCRMClient::Stage](docs/Stage.md)
  - [MergeCRMClient::SyncStatus](docs/SyncStatus.md)
  - [MergeCRMClient::SyncStatusStatusEnum](docs/SyncStatusStatusEnum.md)
  - [MergeCRMClient::Task](docs/Task.md)
+ - [MergeCRMClient::TaskEndpointRequest](docs/TaskEndpointRequest.md)
+ - [MergeCRMClient::TaskRequest](docs/TaskRequest.md)
+ - [MergeCRMClient::TaskResponse](docs/TaskResponse.md)
  - [MergeCRMClient::TaskStatusEnum](docs/TaskStatusEnum.md)
  - [MergeCRMClient::User](docs/User.md)
  - [MergeCRMClient::ValidationProblemSource](docs/ValidationProblemSource.md)

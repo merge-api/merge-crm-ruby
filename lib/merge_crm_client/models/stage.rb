@@ -16,27 +16,37 @@ require 'time'
 module MergeCRMClient
   # # The Stage Object ### Description The `Stage` object is used to represent the stage of an opportunity. ### Usage Example TODO
   class Stage
+    # The stage's name.
+    attr_accessor :name
+
+    # Indicates whether or not this object has been deleted by third party webhooks.
+    attr_accessor :remote_was_deleted
+
     attr_accessor :id
 
     # The third-party API ID of the matching object.
     attr_accessor :remote_id
 
-    # The stage's name.
-    attr_accessor :name
+    attr_accessor :field_mappings
+
+    # This is the datetime that this object was last updated by Merge
+    attr_accessor :modified_at
 
     attr_accessor :remote_data
 
-    # Indicates whether or not this object has been deleted by third party webhooks.
-    attr_accessor :remote_was_deleted
+    attr_accessor :remote_fields
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'name' => :'name',
+        :'remote_was_deleted' => :'remote_was_deleted',
         :'id' => :'id',
         :'remote_id' => :'remote_id',
-        :'name' => :'name',
+        :'field_mappings' => :'field_mappings',
+        :'modified_at' => :'modified_at',
         :'remote_data' => :'remote_data',
-        :'remote_was_deleted' => :'remote_was_deleted'
+        :'remote_fields' => :'remote_fields'
       }
     end
 
@@ -48,19 +58,23 @@ module MergeCRMClient
     # Attribute type mapping.
     def self.openapi_types
       {
+        :'name' => :'String',
+        :'remote_was_deleted' => :'Boolean',
         :'id' => :'String',
         :'remote_id' => :'String',
-        :'name' => :'String',
+        :'field_mappings' => :'Hash<String, Object>',
+        :'modified_at' => :'Time',
         :'remote_data' => :'Array<RemoteData>',
-        :'remote_was_deleted' => :'Boolean'
+        :'remote_fields' => :'Array<RemoteField>'
       }
     end
 
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
-        :'remote_id',
         :'name',
+        :'remote_id',
+        :'field_mappings',
         :'remote_data',
       ])
     end
@@ -80,6 +94,14 @@ module MergeCRMClient
         h[k.to_sym] = v
       }
 
+      if attributes.key?(:'name')
+        self.name = attributes[:'name']
+      end
+
+      if attributes.key?(:'remote_was_deleted')
+        self.remote_was_deleted = attributes[:'remote_was_deleted']
+      end
+
       if attributes.key?(:'id')
         self.id = attributes[:'id']
       end
@@ -88,8 +110,14 @@ module MergeCRMClient
         self.remote_id = attributes[:'remote_id']
       end
 
-      if attributes.key?(:'name')
-        self.name = attributes[:'name']
+      if attributes.key?(:'field_mappings')
+        if (value = attributes[:'field_mappings']).is_a?(Hash)
+          self.field_mappings = value
+        end
+      end
+
+      if attributes.key?(:'modified_at')
+        self.modified_at = attributes[:'modified_at']
       end
 
       if attributes.key?(:'remote_data')
@@ -98,8 +126,10 @@ module MergeCRMClient
         end
       end
 
-      if attributes.key?(:'remote_was_deleted')
-        self.remote_was_deleted = attributes[:'remote_was_deleted']
+      if attributes.key?(:'remote_fields')
+        if (value = attributes[:'remote_fields']).is_a?(Array)
+          self.remote_fields = value
+        end
       end
     end
 
@@ -121,11 +151,14 @@ module MergeCRMClient
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          name == o.name &&
+          remote_was_deleted == o.remote_was_deleted &&
           id == o.id &&
           remote_id == o.remote_id &&
-          name == o.name &&
+          field_mappings == o.field_mappings &&
+          modified_at == o.modified_at &&
           remote_data == o.remote_data &&
-          remote_was_deleted == o.remote_was_deleted
+          remote_fields == o.remote_fields
     end
 
     # @see the `==` method
@@ -137,7 +170,7 @@ module MergeCRMClient
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, remote_id, name, remote_data, remote_was_deleted].hash
+      [name, remote_was_deleted, id, remote_id, field_mappings, modified_at, remote_data, remote_fields].hash
     end
 
     # Builds the object from hash

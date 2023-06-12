@@ -38,7 +38,7 @@ module MergeCRMClient
     end
 
     def self.build_from_hash(value)
-      IssueStatusEnum.new.build_from_hash(value)
+      AddressTypeEnum.new.build_from_hash(value)
     end
   end
 

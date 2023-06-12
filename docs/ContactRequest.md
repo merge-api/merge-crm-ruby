@@ -4,17 +4,16 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **remote_id** | **String** | The third-party API ID of the matching object. | [optional] |
 | **first_name** | **String** | The contact&#39;s first name. | [optional] |
 | **last_name** | **String** | The contact&#39;s last name. | [optional] |
-| **account** | **String** |  | [optional] |
+| **account** | **String** | The contact&#39;s account. | [optional] |
 | **addresses** | [**Array&lt;AddressRequest&gt;**](AddressRequest.md) |  | [optional] |
 | **email_addresses** | [**Array&lt;EmailAddressRequest&gt;**](EmailAddressRequest.md) |  | [optional] |
 | **phone_numbers** | [**Array&lt;PhoneNumberRequest&gt;**](PhoneNumberRequest.md) |  | [optional] |
 | **last_activity_at** | **Time** | When the contact&#39;s last activity occurred. | [optional] |
-| **remote_created_at** | **Time** | When the third party&#39;s contact was created. | [optional] |
 | **integration_params** | [**Hash&lt;String, AnyType&gt;**](AnyType.md) |  | [optional] |
 | **linked_account_params** | [**Hash&lt;String, AnyType&gt;**](AnyType.md) |  | [optional] |
+| **remote_fields** | [**Array&lt;RemoteFieldRequest&gt;**](RemoteFieldRequest.md) |  | [optional] |
 
 ## Example
 
@@ -22,7 +21,6 @@
 require 'merge_crm_client'
 
 instance = MergeCRMClient::ContactRequest.new(
-  remote_id: 19202938,
   first_name: Gil,
   last_name: Feig,
   account: 0958cbc6-6040-430a-848e-aafacbadf4ae,
@@ -30,9 +28,9 @@ instance = MergeCRMClient::ContactRequest.new(
   email_addresses: [{&quot;email_address&quot;:&quot;hello@merge.dev&quot;,&quot;email_address_type&quot;:&quot;Work&quot;}],
   phone_numbers: [{&quot;phone_number&quot;:&quot;+13785579223&quot;,&quot;phone_number_type&quot;:&quot;Mobile&quot;}],
   last_activity_at: 2022-02-10T00:00Z,
-  remote_created_at: 2021-11-10T00:00Z,
-  integration_params: null,
-  linked_account_params: null
+  integration_params: {&quot;unique_integration_field&quot;:&quot;unique_integration_field_value&quot;},
+  linked_account_params: {&quot;unique_linked_account_field&quot;:&quot;unique_linked_account_field_value&quot;},
+  remote_fields: null
 )
 ```
 

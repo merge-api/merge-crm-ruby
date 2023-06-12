@@ -14,11 +14,8 @@ require 'date'
 require 'time'
 
 module MergeCRMClient
-  # # The Opportunity Object ### Description The `Opportunity` object is used to represent an opportunity in the remote system. ### Usage Example TODO
+  # # The Opportunity Object ### Description The `Opportunity` object is used to represent a deal opportunity in a CRM system. ### Usage Example TODO
   class OpportunityRequest
-    # The third-party API ID of the matching object.
-    attr_accessor :remote_id
-
     # The opportunity's name.
     attr_accessor :name
 
@@ -28,13 +25,16 @@ module MergeCRMClient
     # The opportunity's amount.
     attr_accessor :amount
 
+    # The opportunity's owner.
     attr_accessor :owner
 
+    # The account of the opportunity.
     attr_accessor :account
 
+    # The stage of the opportunity.
     attr_accessor :stage
 
-    # The opportunity's status.
+    # The opportunity's status.  * `OPEN` - OPEN * `WON` - WON * `LOST` - LOST
     attr_accessor :status
 
     # When the opportunity's last activity occurred.
@@ -43,17 +43,15 @@ module MergeCRMClient
     # When the opportunity was closed.
     attr_accessor :close_date
 
-    # When the third party's opportunity was created.
-    attr_accessor :remote_created_at
-
     attr_accessor :integration_params
 
     attr_accessor :linked_account_params
 
+    attr_accessor :remote_fields
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'remote_id' => :'remote_id',
         :'name' => :'name',
         :'description' => :'description',
         :'amount' => :'amount',
@@ -63,9 +61,9 @@ module MergeCRMClient
         :'status' => :'status',
         :'last_activity_at' => :'last_activity_at',
         :'close_date' => :'close_date',
-        :'remote_created_at' => :'remote_created_at',
         :'integration_params' => :'integration_params',
-        :'linked_account_params' => :'linked_account_params'
+        :'linked_account_params' => :'linked_account_params',
+        :'remote_fields' => :'remote_fields'
       }
     end
 
@@ -77,7 +75,6 @@ module MergeCRMClient
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'remote_id' => :'String',
         :'name' => :'String',
         :'description' => :'String',
         :'amount' => :'Integer',
@@ -87,16 +84,15 @@ module MergeCRMClient
         :'status' => :'OpportunityStatusEnum',
         :'last_activity_at' => :'Time',
         :'close_date' => :'Time',
-        :'remote_created_at' => :'Time',
         :'integration_params' => :'Hash<String, Object>',
-        :'linked_account_params' => :'Hash<String, Object>'
+        :'linked_account_params' => :'Hash<String, Object>',
+        :'remote_fields' => :'Array<RemoteFieldRequest>'
       }
     end
 
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
-        :'remote_id',
         :'name',
         :'description',
         :'amount',
@@ -106,9 +102,8 @@ module MergeCRMClient
         :'status',
         :'last_activity_at',
         :'close_date',
-        :'remote_created_at',
         :'integration_params',
-        :'linked_account_params'
+        :'linked_account_params',
       ])
     end
 
@@ -126,10 +121,6 @@ module MergeCRMClient
         end
         h[k.to_sym] = v
       }
-
-      if attributes.key?(:'remote_id')
-        self.remote_id = attributes[:'remote_id']
-      end
 
       if attributes.key?(:'name')
         self.name = attributes[:'name']
@@ -167,10 +158,6 @@ module MergeCRMClient
         self.close_date = attributes[:'close_date']
       end
 
-      if attributes.key?(:'remote_created_at')
-        self.remote_created_at = attributes[:'remote_created_at']
-      end
-
       if attributes.key?(:'integration_params')
         if (value = attributes[:'integration_params']).is_a?(Hash)
           self.integration_params = value
@@ -180,6 +167,12 @@ module MergeCRMClient
       if attributes.key?(:'linked_account_params')
         if (value = attributes[:'linked_account_params']).is_a?(Hash)
           self.linked_account_params = value
+        end
+      end
+
+      if attributes.key?(:'remote_fields')
+        if (value = attributes[:'remote_fields']).is_a?(Array)
+          self.remote_fields = value
         end
       end
     end
@@ -226,7 +219,6 @@ module MergeCRMClient
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          remote_id == o.remote_id &&
           name == o.name &&
           description == o.description &&
           amount == o.amount &&
@@ -236,9 +228,9 @@ module MergeCRMClient
           status == o.status &&
           last_activity_at == o.last_activity_at &&
           close_date == o.close_date &&
-          remote_created_at == o.remote_created_at &&
           integration_params == o.integration_params &&
-          linked_account_params == o.linked_account_params
+          linked_account_params == o.linked_account_params &&
+          remote_fields == o.remote_fields
     end
 
     # @see the `==` method
@@ -250,7 +242,7 @@ module MergeCRMClient
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [remote_id, name, description, amount, owner, account, stage, status, last_activity_at, close_date, remote_created_at, integration_params, linked_account_params].hash
+      [name, description, amount, owner, account, stage, status, last_activity_at, close_date, integration_params, linked_account_params, remote_fields].hash
     end
 
     # Builds the object from hash

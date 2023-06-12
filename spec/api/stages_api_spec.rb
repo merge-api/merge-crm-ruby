@@ -41,12 +41,29 @@ describe 'StagesApi' do
   # @option opts [String] :cursor The pagination cursor value.
   # @option opts [Boolean] :include_deleted_data Whether to include data that was marked as deleted by third party webhooks.
   # @option opts [Boolean] :include_remote_data Whether to include the original data Merge fetched from the third-party to produce these models.
-  # @option opts [Time] :modified_after If provided, will only return objects modified after this datetime.
-  # @option opts [Time] :modified_before If provided, will only return objects modified before this datetime.
+  # @option opts [Boolean] :include_remote_fields Whether to include all remote fields, including fields that Merge did not map to common models, in a normalized format.
+  # @option opts [Time] :modified_after If provided, only objects synced by Merge after this date time will be returned.
+  # @option opts [Time] :modified_before If provided, only objects synced by Merge before this date time will be returned.
   # @option opts [Integer] :page_size Number of results to return per page.
   # @option opts [String] :remote_id The API provider&#39;s ID for the given object.
   # @return [PaginatedStageList]
   describe 'stages_list test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for stages_remote_field_classes_list
+  # Returns a list of &#x60;RemoteFieldClass&#x60; objects.
+  # @param x_account_token Token identifying the end user.
+  # @param [Hash] opts the optional parameters
+  # @option opts [String] :cursor The pagination cursor value.
+  # @option opts [Boolean] :include_deleted_data Whether to include data that was marked as deleted by third party webhooks.
+  # @option opts [Boolean] :include_remote_data Whether to include the original data Merge fetched from the third-party to produce these models.
+  # @option opts [Boolean] :include_remote_fields Whether to include all remote fields, including fields that Merge did not map to common models, in a normalized format.
+  # @option opts [Integer] :page_size Number of results to return per page.
+  # @return [PaginatedRemoteFieldClassList]
+  describe 'stages_remote_field_classes_list test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
@@ -58,6 +75,7 @@ describe 'StagesApi' do
   # @param id 
   # @param [Hash] opts the optional parameters
   # @option opts [Boolean] :include_remote_data Whether to include the original data Merge fetched from the third-party to produce these models.
+  # @option opts [Boolean] :include_remote_fields Whether to include all remote fields, including fields that Merge did not map to common models, in a normalized format.
   # @return [Stage]
   describe 'stages_retrieve test' do
     it 'should work' do

@@ -22,11 +22,15 @@ module MergeCRMClient
     # The email address's type.
     attr_accessor :email_address_type
 
+    # This is the datetime that this object was last updated by Merge
+    attr_accessor :modified_at
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'email_address' => :'email_address',
-        :'email_address_type' => :'email_address_type'
+        :'email_address_type' => :'email_address_type',
+        :'modified_at' => :'modified_at'
       }
     end
 
@@ -39,7 +43,8 @@ module MergeCRMClient
     def self.openapi_types
       {
         :'email_address' => :'String',
-        :'email_address_type' => :'String'
+        :'email_address_type' => :'String',
+        :'modified_at' => :'Time'
       }
     end
 
@@ -47,7 +52,7 @@ module MergeCRMClient
     def self.openapi_nullable
       Set.new([
         :'email_address',
-        :'email_address_type'
+        :'email_address_type',
       ])
     end
 
@@ -73,6 +78,10 @@ module MergeCRMClient
       if attributes.key?(:'email_address_type')
         self.email_address_type = attributes[:'email_address_type']
       end
+
+      if attributes.key?(:'modified_at')
+        self.modified_at = attributes[:'modified_at']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -94,7 +103,8 @@ module MergeCRMClient
       return true if self.equal?(o)
       self.class == o.class &&
           email_address == o.email_address &&
-          email_address_type == o.email_address_type
+          email_address_type == o.email_address_type &&
+          modified_at == o.modified_at
     end
 
     # @see the `==` method
@@ -106,7 +116,7 @@ module MergeCRMClient
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [email_address, email_address_type].hash
+      [email_address, email_address_type, modified_at].hash
     end
 
     # Builds the object from hash
