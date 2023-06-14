@@ -25,6 +25,18 @@ describe MergeCRMClient::EngagementType do
       expect(instance).to be_instance_of(MergeCRMClient::EngagementType)
     end
   end
+  describe 'test attribute "activity_type"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "name"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "id"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -37,13 +49,13 @@ describe MergeCRMClient::EngagementType do
     end
   end
 
-  describe 'test attribute "activity_type"' do
+  describe 'test attribute "modified_at"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 
-  describe 'test attribute "name"' do
+  describe 'test attribute "remote_fields"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

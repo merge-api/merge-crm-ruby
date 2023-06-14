@@ -25,12 +25,6 @@ describe MergeCRMClient::EngagementRequest do
       expect(instance).to be_instance_of(MergeCRMClient::EngagementRequest)
     end
   end
-  describe 'test attribute "remote_id"' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
   describe 'test attribute "owner"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -79,6 +73,12 @@ describe MergeCRMClient::EngagementRequest do
     end
   end
 
+  describe 'test attribute "contacts"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   describe 'test attribute "integration_params"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -86,6 +86,12 @@ describe MergeCRMClient::EngagementRequest do
   end
 
   describe 'test attribute "linked_account_params"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "remote_fields"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

@@ -9,6 +9,7 @@ All URIs are relative to *https://api.merge.dev/api/crm/v1*
 | [**opportunities_meta_patch_retrieve**](OpportunitiesApi.md#opportunities_meta_patch_retrieve) | **GET** /opportunities/meta/patch/{id} |  |
 | [**opportunities_meta_post_retrieve**](OpportunitiesApi.md#opportunities_meta_post_retrieve) | **GET** /opportunities/meta/post |  |
 | [**opportunities_partial_update**](OpportunitiesApi.md#opportunities_partial_update) | **PATCH** /opportunities/{id} |  |
+| [**opportunities_remote_field_classes_list**](OpportunitiesApi.md#opportunities_remote_field_classes_list) | **GET** /opportunities/remote-field-classes |  |
 | [**opportunities_retrieve**](OpportunitiesApi.md#opportunities_retrieve) | **GET** /opportunities/{id} |  |
 
 
@@ -122,14 +123,16 @@ opts = {
   expand: 'account', # String | Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
   include_deleted_data: true, # Boolean | Whether to include data that was marked as deleted by third party webhooks.
   include_remote_data: true, # Boolean | Whether to include the original data Merge fetched from the third-party to produce these models.
-  modified_after: Time.parse('2013-10-20T19:20:30+01:00'), # Time | If provided, will only return objects modified after this datetime.
-  modified_before: Time.parse('2013-10-20T19:20:30+01:00'), # Time | If provided, will only return objects modified before this datetime.
+  include_remote_fields: true, # Boolean | Whether to include all remote fields, including fields that Merge did not map to common models, in a normalized format.
+  modified_after: Time.parse('2013-10-20T19:20:30+01:00'), # Time | If provided, only objects synced by Merge after this date time will be returned.
+  modified_before: Time.parse('2013-10-20T19:20:30+01:00'), # Time | If provided, only objects synced by Merge before this date time will be returned.
   owner_id: 'owner_id_example', # String | If provided, will only return opportunities with this owner.
   page_size: 56, # Integer | Number of results to return per page.
-  remote_fields: 'status', # String | Which fields should be returned in non-normalized form.
+  remote_fields: 'status', # String | Deprecated. Use show_enum_origins.
   remote_id: 'remote_id_example', # String | The API provider's ID for the given object.
+  show_enum_origins: 'status', # String | Which fields should be returned in non-normalized form.
   stage_id: 'stage_id_example', # String | If provided, will only return opportunities with this stage.
-  status: 'LOST' # String | If provided, will only return opportunities with this status. Options: ('OPEN', 'WON', 'LOST')
+  status: 'LOST' # String | If provided, will only return opportunities with this status. Options: ('OPEN', 'WON', 'LOST')  * `OPEN` - OPEN * `WON` - WON * `LOST` - LOST
 }
 
 begin
@@ -171,14 +174,16 @@ end
 | **expand** | **String** | Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. | [optional] |
 | **include_deleted_data** | **Boolean** | Whether to include data that was marked as deleted by third party webhooks. | [optional] |
 | **include_remote_data** | **Boolean** | Whether to include the original data Merge fetched from the third-party to produce these models. | [optional] |
-| **modified_after** | **Time** | If provided, will only return objects modified after this datetime. | [optional] |
-| **modified_before** | **Time** | If provided, will only return objects modified before this datetime. | [optional] |
+| **include_remote_fields** | **Boolean** | Whether to include all remote fields, including fields that Merge did not map to common models, in a normalized format. | [optional] |
+| **modified_after** | **Time** | If provided, only objects synced by Merge after this date time will be returned. | [optional] |
+| **modified_before** | **Time** | If provided, only objects synced by Merge before this date time will be returned. | [optional] |
 | **owner_id** | **String** | If provided, will only return opportunities with this owner. | [optional] |
 | **page_size** | **Integer** | Number of results to return per page. | [optional] |
-| **remote_fields** | **String** | Which fields should be returned in non-normalized form. | [optional] |
+| **remote_fields** | **String** | Deprecated. Use show_enum_origins. | [optional] |
 | **remote_id** | **String** | The API provider&#39;s ID for the given object. | [optional] |
+| **show_enum_origins** | **String** | Which fields should be returned in non-normalized form. | [optional] |
 | **stage_id** | **String** | If provided, will only return opportunities with this stage. | [optional] |
-| **status** | **String** | If provided, will only return opportunities with this status. Options: (&#39;OPEN&#39;, &#39;WON&#39;, &#39;LOST&#39;) | [optional] |
+| **status** | **String** | If provided, will only return opportunities with this status. Options: (&#39;OPEN&#39;, &#39;WON&#39;, &#39;LOST&#39;)  * &#x60;OPEN&#x60; - OPEN * &#x60;WON&#x60; - WON * &#x60;LOST&#x60; - LOST | [optional] |
 
 ### Return type
 
@@ -344,6 +349,8 @@ end
 
 
 
+Updates an `Opportunity` object with the given `id`.
+
 ### Examples
 
 ```ruby
@@ -417,6 +424,89 @@ end
 - **Accept**: application/json
 
 
+## opportunities_remote_field_classes_list
+
+> <PaginatedRemoteFieldClassList> opportunities_remote_field_classes_list(x_account_token, opts)
+
+
+
+Returns a list of `RemoteFieldClass` objects.
+
+### Examples
+
+```ruby
+require 'time'
+require 'merge_crm_client'
+# setup authorization
+MergeCRMClient.configure do |config|
+  # Configure API key authorization: tokenAuth
+  config.api_key['tokenAuth'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  # config.api_key_prefix['tokenAuth'] = 'Bearer'
+end
+
+api_instance = MergeCRMClient::OpportunitiesApi.new
+x_account_token = 'x_account_token_example' # String | Token identifying the end user.
+opts = {
+  cursor: 'cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw', # String | The pagination cursor value.
+  include_deleted_data: true, # Boolean | Whether to include data that was marked as deleted by third party webhooks.
+  include_remote_data: true, # Boolean | Whether to include the original data Merge fetched from the third-party to produce these models.
+  include_remote_fields: true, # Boolean | Whether to include all remote fields, including fields that Merge did not map to common models, in a normalized format.
+  page_size: 56 # Integer | Number of results to return per page.
+}
+
+begin
+  
+  result = api_instance.opportunities_remote_field_classes_list(x_account_token, opts)
+  p result
+rescue MergeCRMClient::ApiError => e
+  puts "Error when calling OpportunitiesApi->opportunities_remote_field_classes_list: #{e}"
+end
+```
+
+#### Using the opportunities_remote_field_classes_list_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<PaginatedRemoteFieldClassList>, Integer, Hash)> opportunities_remote_field_classes_list_with_http_info(x_account_token, opts)
+
+```ruby
+begin
+  
+  data, status_code, headers = api_instance.opportunities_remote_field_classes_list_with_http_info(x_account_token, opts)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <PaginatedRemoteFieldClassList>
+rescue MergeCRMClient::ApiError => e
+  puts "Error when calling OpportunitiesApi->opportunities_remote_field_classes_list_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **x_account_token** | **String** | Token identifying the end user. |  |
+| **cursor** | **String** | The pagination cursor value. | [optional] |
+| **include_deleted_data** | **Boolean** | Whether to include data that was marked as deleted by third party webhooks. | [optional] |
+| **include_remote_data** | **Boolean** | Whether to include the original data Merge fetched from the third-party to produce these models. | [optional] |
+| **include_remote_fields** | **Boolean** | Whether to include all remote fields, including fields that Merge did not map to common models, in a normalized format. | [optional] |
+| **page_size** | **Integer** | Number of results to return per page. | [optional] |
+
+### Return type
+
+[**PaginatedRemoteFieldClassList**](PaginatedRemoteFieldClassList.md)
+
+### Authorization
+
+[tokenAuth](../README.md#tokenAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
 ## opportunities_retrieve
 
 > <Opportunity> opportunities_retrieve(x_account_token, id, opts)
@@ -444,7 +534,9 @@ id = TODO # String |
 opts = {
   expand: 'account', # String | Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
   include_remote_data: true, # Boolean | Whether to include the original data Merge fetched from the third-party to produce these models.
-  remote_fields: 'status' # String | Which fields should be returned in non-normalized form.
+  include_remote_fields: true, # Boolean | Whether to include all remote fields, including fields that Merge did not map to common models, in a normalized format.
+  remote_fields: 'status', # String | Deprecated. Use show_enum_origins.
+  show_enum_origins: 'status' # String | Which fields should be returned in non-normalized form.
 }
 
 begin
@@ -482,7 +574,9 @@ end
 | **id** | [**String**](.md) |  |  |
 | **expand** | **String** | Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces. | [optional] |
 | **include_remote_data** | **Boolean** | Whether to include the original data Merge fetched from the third-party to produce these models. | [optional] |
-| **remote_fields** | **String** | Which fields should be returned in non-normalized form. | [optional] |
+| **include_remote_fields** | **Boolean** | Whether to include all remote fields, including fields that Merge did not map to common models, in a normalized format. | [optional] |
+| **remote_fields** | **String** | Deprecated. Use show_enum_origins. | [optional] |
+| **show_enum_origins** | **String** | Which fields should be returned in non-normalized form. | [optional] |
 
 ### Return type
 

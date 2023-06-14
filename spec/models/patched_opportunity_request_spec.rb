@@ -79,12 +79,6 @@ describe MergeCRMClient::PatchedOpportunityRequest do
     end
   end
 
-  describe 'test attribute "remote_created_at"' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
   describe 'test attribute "integration_params"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -92,6 +86,12 @@ describe MergeCRMClient::PatchedOpportunityRequest do
   end
 
   describe 'test attribute "linked_account_params"' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "remote_fields"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

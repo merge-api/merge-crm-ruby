@@ -106,8 +106,9 @@ module MergeCRMClient
     # @option opts [String] :expand Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
     # @option opts [Boolean] :include_deleted_data Whether to include data that was marked as deleted by third party webhooks.
     # @option opts [Boolean] :include_remote_data Whether to include the original data Merge fetched from the third-party to produce these models.
-    # @option opts [Time] :modified_after If provided, will only return objects modified after this datetime.
-    # @option opts [Time] :modified_before If provided, will only return objects modified before this datetime.
+    # @option opts [Boolean] :include_remote_fields Whether to include all remote fields, including fields that Merge did not map to common models, in a normalized format.
+    # @option opts [Time] :modified_after If provided, only objects synced by Merge after this date time will be returned.
+    # @option opts [Time] :modified_before If provided, only objects synced by Merge before this date time will be returned.
     # @option opts [String] :opportunity_id If provided, will only return notes with this opportunity.
     # @option opts [String] :owner_id If provided, will only return notes with this owner.
     # @option opts [Integer] :page_size Number of results to return per page.
@@ -129,8 +130,9 @@ module MergeCRMClient
     # @option opts [String] :expand Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
     # @option opts [Boolean] :include_deleted_data Whether to include data that was marked as deleted by third party webhooks.
     # @option opts [Boolean] :include_remote_data Whether to include the original data Merge fetched from the third-party to produce these models.
-    # @option opts [Time] :modified_after If provided, will only return objects modified after this datetime.
-    # @option opts [Time] :modified_before If provided, will only return objects modified before this datetime.
+    # @option opts [Boolean] :include_remote_fields Whether to include all remote fields, including fields that Merge did not map to common models, in a normalized format.
+    # @option opts [Time] :modified_after If provided, only objects synced by Merge after this date time will be returned.
+    # @option opts [Time] :modified_before If provided, only objects synced by Merge before this date time will be returned.
     # @option opts [String] :opportunity_id If provided, will only return notes with this opportunity.
     # @option opts [String] :owner_id If provided, will only return notes with this owner.
     # @option opts [Integer] :page_size Number of results to return per page.
@@ -161,6 +163,7 @@ module MergeCRMClient
       query_params[:'expand'] = opts[:'expand'] if !opts[:'expand'].nil?
       query_params[:'include_deleted_data'] = opts[:'include_deleted_data'] if !opts[:'include_deleted_data'].nil?
       query_params[:'include_remote_data'] = opts[:'include_remote_data'] if !opts[:'include_remote_data'].nil?
+      query_params[:'include_remote_fields'] = opts[:'include_remote_fields'] if !opts[:'include_remote_fields'].nil?
       query_params[:'modified_after'] = opts[:'modified_after'] if !opts[:'modified_after'].nil?
       query_params[:'modified_before'] = opts[:'modified_before'] if !opts[:'modified_before'].nil?
       query_params[:'opportunity_id'] = opts[:'opportunity_id'] if !opts[:'opportunity_id'].nil?
@@ -265,12 +268,90 @@ module MergeCRMClient
       return data, status_code, headers
     end
 
+    # Returns a list of `RemoteFieldClass` objects.
+    # @param x_account_token [String] Token identifying the end user.
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :cursor The pagination cursor value.
+    # @option opts [Boolean] :include_deleted_data Whether to include data that was marked as deleted by third party webhooks.
+    # @option opts [Boolean] :include_remote_data Whether to include the original data Merge fetched from the third-party to produce these models.
+    # @option opts [Boolean] :include_remote_fields Whether to include all remote fields, including fields that Merge did not map to common models, in a normalized format.
+    # @option opts [Integer] :page_size Number of results to return per page.
+    # @return [PaginatedRemoteFieldClassList]
+    def notes_remote_field_classes_list(x_account_token, opts = {})
+      data, _status_code, _headers = notes_remote_field_classes_list_with_http_info(x_account_token, opts)
+      data
+    end
+
+    # Returns a list of &#x60;RemoteFieldClass&#x60; objects.
+    # @param x_account_token [String] Token identifying the end user.
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :cursor The pagination cursor value.
+    # @option opts [Boolean] :include_deleted_data Whether to include data that was marked as deleted by third party webhooks.
+    # @option opts [Boolean] :include_remote_data Whether to include the original data Merge fetched from the third-party to produce these models.
+    # @option opts [Boolean] :include_remote_fields Whether to include all remote fields, including fields that Merge did not map to common models, in a normalized format.
+    # @option opts [Integer] :page_size Number of results to return per page.
+    # @return [Array<(PaginatedRemoteFieldClassList, Integer, Hash)>] PaginatedRemoteFieldClassList data, response status code and response headers
+    def notes_remote_field_classes_list_with_http_info(x_account_token, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: NotesApi.notes_remote_field_classes_list ...'
+      end
+      # verify the required parameter 'x_account_token' is set
+      if @api_client.config.client_side_validation && x_account_token.nil?
+        fail ArgumentError, "Missing the required parameter 'x_account_token' when calling NotesApi.notes_remote_field_classes_list"
+      end
+      # resource path
+      local_var_path = '/notes/remote-field-classes'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'cursor'] = opts[:'cursor'] if !opts[:'cursor'].nil?
+      query_params[:'include_deleted_data'] = opts[:'include_deleted_data'] if !opts[:'include_deleted_data'].nil?
+      query_params[:'include_remote_data'] = opts[:'include_remote_data'] if !opts[:'include_remote_data'].nil?
+      query_params[:'include_remote_fields'] = opts[:'include_remote_fields'] if !opts[:'include_remote_fields'].nil?
+      query_params[:'page_size'] = opts[:'page_size'] if !opts[:'page_size'].nil?
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      header_params[:'X-Account-Token'] = x_account_token
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'PaginatedRemoteFieldClassList'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['tokenAuth']
+
+      new_options = opts.merge(
+        :operation => :"NotesApi.notes_remote_field_classes_list",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: NotesApi#notes_remote_field_classes_list\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
     # Returns a `Note` object with the given `id`.
     # @param x_account_token [String] Token identifying the end user.
     # @param id [String] 
     # @param [Hash] opts the optional parameters
     # @option opts [String] :expand Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
     # @option opts [Boolean] :include_remote_data Whether to include the original data Merge fetched from the third-party to produce these models.
+    # @option opts [Boolean] :include_remote_fields Whether to include all remote fields, including fields that Merge did not map to common models, in a normalized format.
     # @return [Note]
     def notes_retrieve(x_account_token, id, opts = {})
       data, _status_code, _headers = notes_retrieve_with_http_info(x_account_token, id, opts)
@@ -283,6 +364,7 @@ module MergeCRMClient
     # @param [Hash] opts the optional parameters
     # @option opts [String] :expand Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
     # @option opts [Boolean] :include_remote_data Whether to include the original data Merge fetched from the third-party to produce these models.
+    # @option opts [Boolean] :include_remote_fields Whether to include all remote fields, including fields that Merge did not map to common models, in a normalized format.
     # @return [Array<(Note, Integer, Hash)>] Note data, response status code and response headers
     def notes_retrieve_with_http_info(x_account_token, id, opts = {})
       if @api_client.config.debugging
@@ -307,6 +389,7 @@ module MergeCRMClient
       query_params = opts[:query_params] || {}
       query_params[:'expand'] = opts[:'expand'] if !opts[:'expand'].nil?
       query_params[:'include_remote_data'] = opts[:'include_remote_data'] if !opts[:'include_remote_data'].nil?
+      query_params[:'include_remote_fields'] = opts[:'include_remote_fields'] if !opts[:'include_remote_fields'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}

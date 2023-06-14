@@ -4,9 +4,7 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **id** | **String** |  | [optional][readonly] |
-| **remote_id** | **String** | The third-party API ID of the matching object. | [optional] |
-| **owner** | **String** |  | [optional] |
+| **owner** | **String** | The lead&#39;s owner. | [optional] |
 | **lead_source** | **String** | The lead&#39;s source. | [optional] |
 | **title** | **String** | The lead&#39;s title. | [optional] |
 | **company** | **String** | The lead&#39;s company. | [optional] |
@@ -18,10 +16,15 @@
 | **remote_updated_at** | **Time** | When the third party&#39;s lead was updated. | [optional] |
 | **remote_created_at** | **Time** | When the third party&#39;s lead was created. | [optional] |
 | **converted_date** | **Time** | When the lead was converted. | [optional] |
-| **converted_contact** | **String** |  | [optional] |
-| **converted_account** | **String** |  | [optional] |
-| **remote_data** | [**Array&lt;RemoteData&gt;**](RemoteData.md) |  | [optional][readonly] |
+| **converted_contact** | **String** | The contact of the converted lead. | [optional] |
+| **converted_account** | **String** | The account of the converted lead. | [optional] |
 | **remote_was_deleted** | **Boolean** |  | [optional][readonly] |
+| **id** | **String** |  | [optional][readonly] |
+| **remote_id** | **String** | The third-party API ID of the matching object. | [optional] |
+| **field_mappings** | [**Hash&lt;String, AnyType&gt;**](AnyType.md) |  | [optional][readonly] |
+| **modified_at** | **Time** | This is the datetime that this object was last updated by Merge | [optional][readonly] |
+| **remote_data** | [**Array&lt;RemoteData&gt;**](RemoteData.md) |  | [optional][readonly] |
+| **remote_fields** | [**Array&lt;RemoteField&gt;**](RemoteField.md) |  | [optional][readonly] |
 
 ## Example
 
@@ -29,8 +32,6 @@
 require 'merge_crm_client'
 
 instance = MergeCRMClient::Lead.new(
-  id: null,
-  remote_id: 19202938,
   owner: 0358cbc6-2040-430a-848e-aafacbadf3aa,
   lead_source: API Blogger,
   title: Co-Founder,
@@ -45,8 +46,13 @@ instance = MergeCRMClient::Lead.new(
   converted_date: 2022-03-10T00:00Z,
   converted_contact: null,
   converted_account: 9c9de072-29cf-48e3-9578-1ca5b145b40e,
+  remote_was_deleted: null,
+  id: null,
+  remote_id: 19202938,
+  field_mappings: {&quot;organization_defined_targets&quot;:{&quot;custom_key&quot;:&quot;custom_value&quot;},&quot;linked_account_defined_targets&quot;:{&quot;custom_key&quot;:&quot;custom_value&quot;}},
+  modified_at: 2021-10-16T00:00Z,
   remote_data: [{&quot;path&quot;:&quot;/leads&quot;,&quot;data&quot;:[&quot;Varies by platform&quot;]}],
-  remote_was_deleted: null
+  remote_fields: null
 )
 ```
 

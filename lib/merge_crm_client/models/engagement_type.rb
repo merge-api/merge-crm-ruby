@@ -14,26 +14,33 @@ require 'date'
 require 'time'
 
 module MergeCRMClient
-  # # The Engagement Type Object ### Description The `Engagement Type` object is used to represent the type of an engagement in the remote system. ### Usage Example TODO
+  # # The Engagement Type Object ### Description The `Engagement Type` object is used to represent an interaction activity. A given `Engagement` typically has an `Engagement Type` object represented in the engagement_type field. ### Usage Example TODO
   class EngagementType
-    attr_accessor :id
-
-    # The third-party API ID of the matching object.
-    attr_accessor :remote_id
-
-    # The engagement type's activity type.
+    # The engagement type's activity type.  * `CALL` - CALL * `MEETING` - MEETING * `EMAIL` - EMAIL
     attr_accessor :activity_type
 
     # The engagement type's name.
     attr_accessor :name
 
+    attr_accessor :id
+
+    # The third-party API ID of the matching object.
+    attr_accessor :remote_id
+
+    # This is the datetime that this object was last updated by Merge
+    attr_accessor :modified_at
+
+    attr_accessor :remote_fields
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'activity_type' => :'activity_type',
+        :'name' => :'name',
         :'id' => :'id',
         :'remote_id' => :'remote_id',
-        :'activity_type' => :'activity_type',
-        :'name' => :'name'
+        :'modified_at' => :'modified_at',
+        :'remote_fields' => :'remote_fields'
       }
     end
 
@@ -45,19 +52,21 @@ module MergeCRMClient
     # Attribute type mapping.
     def self.openapi_types
       {
+        :'activity_type' => :'ActivityTypeEnum',
+        :'name' => :'String',
         :'id' => :'String',
         :'remote_id' => :'String',
-        :'activity_type' => :'ActivityTypeEnum',
-        :'name' => :'String'
+        :'modified_at' => :'Time',
+        :'remote_fields' => :'Array<RemoteField>'
       }
     end
 
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
-        :'remote_id',
         :'activity_type',
-        :'name'
+        :'name',
+        :'remote_id',
       ])
     end
 
@@ -76,6 +85,14 @@ module MergeCRMClient
         h[k.to_sym] = v
       }
 
+      if attributes.key?(:'activity_type')
+        self.activity_type = attributes[:'activity_type']
+      end
+
+      if attributes.key?(:'name')
+        self.name = attributes[:'name']
+      end
+
       if attributes.key?(:'id')
         self.id = attributes[:'id']
       end
@@ -84,12 +101,14 @@ module MergeCRMClient
         self.remote_id = attributes[:'remote_id']
       end
 
-      if attributes.key?(:'activity_type')
-        self.activity_type = attributes[:'activity_type']
+      if attributes.key?(:'modified_at')
+        self.modified_at = attributes[:'modified_at']
       end
 
-      if attributes.key?(:'name')
-        self.name = attributes[:'name']
+      if attributes.key?(:'remote_fields')
+        if (value = attributes[:'remote_fields']).is_a?(Array)
+          self.remote_fields = value
+        end
       end
     end
 
@@ -111,10 +130,12 @@ module MergeCRMClient
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          activity_type == o.activity_type &&
+          name == o.name &&
           id == o.id &&
           remote_id == o.remote_id &&
-          activity_type == o.activity_type &&
-          name == o.name
+          modified_at == o.modified_at &&
+          remote_fields == o.remote_fields
     end
 
     # @see the `==` method
@@ -126,7 +147,7 @@ module MergeCRMClient
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, remote_id, activity_type, name].hash
+      [activity_type, name, id, remote_id, modified_at, remote_fields].hash
     end
 
     # Builds the object from hash

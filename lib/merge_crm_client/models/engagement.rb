@@ -14,13 +14,9 @@ require 'date'
 require 'time'
 
 module MergeCRMClient
-  # # The Engagement Object ### Description The `Engagement` object is used to represent an engagement in the remote system. ### Usage Example TODO
+  # # The Engagement Object ### Description The `Engagement` object is used to represent an interaction noted in a CRM system. ### Usage Example TODO
   class Engagement
-    attr_accessor :id
-
-    # The third-party API ID of the matching object.
-    attr_accessor :remote_id
-
+    # The engagement's owner.
     attr_accessor :owner
 
     # The engagement's content.
@@ -29,9 +25,10 @@ module MergeCRMClient
     # The engagement's subject.
     attr_accessor :subject
 
-    # The engagement's direction.
+    # The engagement's direction.  * `INBOUND` - INBOUND * `OUTBOUND` - OUTBOUND
     attr_accessor :direction
 
+    # The engagement type of the engagement.
     attr_accessor :engagement_type
 
     # The time at which the engagement started.
@@ -40,18 +37,31 @@ module MergeCRMClient
     # The time at which the engagement ended.
     attr_accessor :end_time
 
+    # The account of the engagement.
     attr_accessor :account
 
-    attr_accessor :remote_data
+    attr_accessor :contacts
 
     # Indicates whether or not this object has been deleted by third party webhooks.
     attr_accessor :remote_was_deleted
 
+    attr_accessor :id
+
+    # The third-party API ID of the matching object.
+    attr_accessor :remote_id
+
+    attr_accessor :field_mappings
+
+    # This is the datetime that this object was last updated by Merge
+    attr_accessor :modified_at
+
+    attr_accessor :remote_data
+
+    attr_accessor :remote_fields
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'id' => :'id',
-        :'remote_id' => :'remote_id',
         :'owner' => :'owner',
         :'content' => :'content',
         :'subject' => :'subject',
@@ -60,8 +70,14 @@ module MergeCRMClient
         :'start_time' => :'start_time',
         :'end_time' => :'end_time',
         :'account' => :'account',
+        :'contacts' => :'contacts',
+        :'remote_was_deleted' => :'remote_was_deleted',
+        :'id' => :'id',
+        :'remote_id' => :'remote_id',
+        :'field_mappings' => :'field_mappings',
+        :'modified_at' => :'modified_at',
         :'remote_data' => :'remote_data',
-        :'remote_was_deleted' => :'remote_was_deleted'
+        :'remote_fields' => :'remote_fields'
       }
     end
 
@@ -73,8 +89,6 @@ module MergeCRMClient
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'id' => :'String',
-        :'remote_id' => :'String',
         :'owner' => :'String',
         :'content' => :'String',
         :'subject' => :'String',
@@ -83,15 +97,20 @@ module MergeCRMClient
         :'start_time' => :'Time',
         :'end_time' => :'Time',
         :'account' => :'String',
+        :'contacts' => :'Array<String>',
+        :'remote_was_deleted' => :'Boolean',
+        :'id' => :'String',
+        :'remote_id' => :'String',
+        :'field_mappings' => :'Hash<String, Object>',
+        :'modified_at' => :'Time',
         :'remote_data' => :'Array<RemoteData>',
-        :'remote_was_deleted' => :'Boolean'
+        :'remote_fields' => :'Array<RemoteField>'
       }
     end
 
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
-        :'remote_id',
         :'owner',
         :'content',
         :'subject',
@@ -100,6 +119,8 @@ module MergeCRMClient
         :'start_time',
         :'end_time',
         :'account',
+        :'remote_id',
+        :'field_mappings',
         :'remote_data',
       ])
     end
@@ -118,14 +139,6 @@ module MergeCRMClient
         end
         h[k.to_sym] = v
       }
-
-      if attributes.key?(:'id')
-        self.id = attributes[:'id']
-      end
-
-      if attributes.key?(:'remote_id')
-        self.remote_id = attributes[:'remote_id']
-      end
 
       if attributes.key?(:'owner')
         self.owner = attributes[:'owner']
@@ -159,14 +172,44 @@ module MergeCRMClient
         self.account = attributes[:'account']
       end
 
+      if attributes.key?(:'contacts')
+        if (value = attributes[:'contacts']).is_a?(Array)
+          self.contacts = value
+        end
+      end
+
+      if attributes.key?(:'remote_was_deleted')
+        self.remote_was_deleted = attributes[:'remote_was_deleted']
+      end
+
+      if attributes.key?(:'id')
+        self.id = attributes[:'id']
+      end
+
+      if attributes.key?(:'remote_id')
+        self.remote_id = attributes[:'remote_id']
+      end
+
+      if attributes.key?(:'field_mappings')
+        if (value = attributes[:'field_mappings']).is_a?(Hash)
+          self.field_mappings = value
+        end
+      end
+
+      if attributes.key?(:'modified_at')
+        self.modified_at = attributes[:'modified_at']
+      end
+
       if attributes.key?(:'remote_data')
         if (value = attributes[:'remote_data']).is_a?(Array)
           self.remote_data = value
         end
       end
 
-      if attributes.key?(:'remote_was_deleted')
-        self.remote_was_deleted = attributes[:'remote_was_deleted']
+      if attributes.key?(:'remote_fields')
+        if (value = attributes[:'remote_fields']).is_a?(Array)
+          self.remote_fields = value
+        end
       end
     end
 
@@ -188,8 +231,6 @@ module MergeCRMClient
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          id == o.id &&
-          remote_id == o.remote_id &&
           owner == o.owner &&
           content == o.content &&
           subject == o.subject &&
@@ -198,8 +239,14 @@ module MergeCRMClient
           start_time == o.start_time &&
           end_time == o.end_time &&
           account == o.account &&
+          contacts == o.contacts &&
+          remote_was_deleted == o.remote_was_deleted &&
+          id == o.id &&
+          remote_id == o.remote_id &&
+          field_mappings == o.field_mappings &&
+          modified_at == o.modified_at &&
           remote_data == o.remote_data &&
-          remote_was_deleted == o.remote_was_deleted
+          remote_fields == o.remote_fields
     end
 
     # @see the `==` method
@@ -211,7 +258,7 @@ module MergeCRMClient
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, remote_id, owner, content, subject, direction, engagement_type, start_time, end_time, account, remote_data, remote_was_deleted].hash
+      [owner, content, subject, direction, engagement_type, start_time, end_time, account, contacts, remote_was_deleted, id, remote_id, field_mappings, modified_at, remote_data, remote_fields].hash
     end
 
     # Builds the object from hash

@@ -19,6 +19,80 @@ module MergeCRMClient
     def initialize(api_client = ApiClient.default)
       @api_client = api_client
     end
+    # Ignores a specific row based on the `model_id` in the url. These records will have their properties set to null, and will not be updated in future syncs. The \"reason\" and \"message\" fields in the request body will be stored for audit purposes.
+    # @param x_account_token [String] Token identifying the end user.
+    # @param model_id [String] 
+    # @param ignore_common_model_request [IgnoreCommonModelRequest] 
+    # @param [Hash] opts the optional parameters
+    # @return [nil]
+    def users_ignore_create(x_account_token, model_id, ignore_common_model_request, opts = {})
+      users_ignore_create_with_http_info(x_account_token, model_id, ignore_common_model_request, opts)
+      nil
+    end
+
+    # Ignores a specific row based on the &#x60;model_id&#x60; in the url. These records will have their properties set to null, and will not be updated in future syncs. The \&quot;reason\&quot; and \&quot;message\&quot; fields in the request body will be stored for audit purposes.
+    # @param x_account_token [String] Token identifying the end user.
+    # @param model_id [String] 
+    # @param ignore_common_model_request [IgnoreCommonModelRequest] 
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
+    def users_ignore_create_with_http_info(x_account_token, model_id, ignore_common_model_request, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: UsersApi.users_ignore_create ...'
+      end
+      # verify the required parameter 'x_account_token' is set
+      if @api_client.config.client_side_validation && x_account_token.nil?
+        fail ArgumentError, "Missing the required parameter 'x_account_token' when calling UsersApi.users_ignore_create"
+      end
+      # verify the required parameter 'model_id' is set
+      if @api_client.config.client_side_validation && model_id.nil?
+        fail ArgumentError, "Missing the required parameter 'model_id' when calling UsersApi.users_ignore_create"
+      end
+      # verify the required parameter 'ignore_common_model_request' is set
+      if @api_client.config.client_side_validation && ignore_common_model_request.nil?
+        fail ArgumentError, "Missing the required parameter 'ignore_common_model_request' when calling UsersApi.users_ignore_create"
+      end
+      # resource path
+      local_var_path = '/users/ignore/{model_id}'.sub('{' + 'model_id' + '}', CGI.escape(model_id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json', 'application/x-www-form-urlencoded', 'multipart/form-data'])
+      header_params[:'X-Account-Token'] = x_account_token
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body] || @api_client.object_to_http_body(ignore_common_model_request)
+
+      # return_type
+      return_type = opts[:debug_return_type]
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['tokenAuth']
+
+      new_options = opts.merge(
+        :operation => :"UsersApi.users_ignore_create",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: UsersApi#users_ignore_create\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
     # Returns a list of `User` objects.
     # @param x_account_token [String] Token identifying the end user.
     # @param [Hash] opts the optional parameters
@@ -27,8 +101,9 @@ module MergeCRMClient
     # @option opts [String] :cursor The pagination cursor value.
     # @option opts [Boolean] :include_deleted_data Whether to include data that was marked as deleted by third party webhooks.
     # @option opts [Boolean] :include_remote_data Whether to include the original data Merge fetched from the third-party to produce these models.
-    # @option opts [Time] :modified_after If provided, will only return objects modified after this datetime.
-    # @option opts [Time] :modified_before If provided, will only return objects modified before this datetime.
+    # @option opts [Boolean] :include_remote_fields Whether to include all remote fields, including fields that Merge did not map to common models, in a normalized format.
+    # @option opts [Time] :modified_after If provided, only objects synced by Merge after this date time will be returned.
+    # @option opts [Time] :modified_before If provided, only objects synced by Merge before this date time will be returned.
     # @option opts [Integer] :page_size Number of results to return per page.
     # @option opts [String] :remote_id The API provider&#39;s ID for the given object.
     # @return [PaginatedUserList]
@@ -45,8 +120,9 @@ module MergeCRMClient
     # @option opts [String] :cursor The pagination cursor value.
     # @option opts [Boolean] :include_deleted_data Whether to include data that was marked as deleted by third party webhooks.
     # @option opts [Boolean] :include_remote_data Whether to include the original data Merge fetched from the third-party to produce these models.
-    # @option opts [Time] :modified_after If provided, will only return objects modified after this datetime.
-    # @option opts [Time] :modified_before If provided, will only return objects modified before this datetime.
+    # @option opts [Boolean] :include_remote_fields Whether to include all remote fields, including fields that Merge did not map to common models, in a normalized format.
+    # @option opts [Time] :modified_after If provided, only objects synced by Merge after this date time will be returned.
+    # @option opts [Time] :modified_before If provided, only objects synced by Merge before this date time will be returned.
     # @option opts [Integer] :page_size Number of results to return per page.
     # @option opts [String] :remote_id The API provider&#39;s ID for the given object.
     # @return [Array<(PaginatedUserList, Integer, Hash)>] PaginatedUserList data, response status code and response headers
@@ -68,6 +144,7 @@ module MergeCRMClient
       query_params[:'cursor'] = opts[:'cursor'] if !opts[:'cursor'].nil?
       query_params[:'include_deleted_data'] = opts[:'include_deleted_data'] if !opts[:'include_deleted_data'].nil?
       query_params[:'include_remote_data'] = opts[:'include_remote_data'] if !opts[:'include_remote_data'].nil?
+      query_params[:'include_remote_fields'] = opts[:'include_remote_fields'] if !opts[:'include_remote_fields'].nil?
       query_params[:'modified_after'] = opts[:'modified_after'] if !opts[:'modified_after'].nil?
       query_params[:'modified_before'] = opts[:'modified_before'] if !opts[:'modified_before'].nil?
       query_params[:'page_size'] = opts[:'page_size'] if !opts[:'page_size'].nil?
@@ -108,11 +185,89 @@ module MergeCRMClient
       return data, status_code, headers
     end
 
+    # Returns a list of `RemoteFieldClass` objects.
+    # @param x_account_token [String] Token identifying the end user.
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :cursor The pagination cursor value.
+    # @option opts [Boolean] :include_deleted_data Whether to include data that was marked as deleted by third party webhooks.
+    # @option opts [Boolean] :include_remote_data Whether to include the original data Merge fetched from the third-party to produce these models.
+    # @option opts [Boolean] :include_remote_fields Whether to include all remote fields, including fields that Merge did not map to common models, in a normalized format.
+    # @option opts [Integer] :page_size Number of results to return per page.
+    # @return [PaginatedRemoteFieldClassList]
+    def users_remote_field_classes_list(x_account_token, opts = {})
+      data, _status_code, _headers = users_remote_field_classes_list_with_http_info(x_account_token, opts)
+      data
+    end
+
+    # Returns a list of &#x60;RemoteFieldClass&#x60; objects.
+    # @param x_account_token [String] Token identifying the end user.
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :cursor The pagination cursor value.
+    # @option opts [Boolean] :include_deleted_data Whether to include data that was marked as deleted by third party webhooks.
+    # @option opts [Boolean] :include_remote_data Whether to include the original data Merge fetched from the third-party to produce these models.
+    # @option opts [Boolean] :include_remote_fields Whether to include all remote fields, including fields that Merge did not map to common models, in a normalized format.
+    # @option opts [Integer] :page_size Number of results to return per page.
+    # @return [Array<(PaginatedRemoteFieldClassList, Integer, Hash)>] PaginatedRemoteFieldClassList data, response status code and response headers
+    def users_remote_field_classes_list_with_http_info(x_account_token, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: UsersApi.users_remote_field_classes_list ...'
+      end
+      # verify the required parameter 'x_account_token' is set
+      if @api_client.config.client_side_validation && x_account_token.nil?
+        fail ArgumentError, "Missing the required parameter 'x_account_token' when calling UsersApi.users_remote_field_classes_list"
+      end
+      # resource path
+      local_var_path = '/users/remote-field-classes'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'cursor'] = opts[:'cursor'] if !opts[:'cursor'].nil?
+      query_params[:'include_deleted_data'] = opts[:'include_deleted_data'] if !opts[:'include_deleted_data'].nil?
+      query_params[:'include_remote_data'] = opts[:'include_remote_data'] if !opts[:'include_remote_data'].nil?
+      query_params[:'include_remote_fields'] = opts[:'include_remote_fields'] if !opts[:'include_remote_fields'].nil?
+      query_params[:'page_size'] = opts[:'page_size'] if !opts[:'page_size'].nil?
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      header_params[:'X-Account-Token'] = x_account_token
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'PaginatedRemoteFieldClassList'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['tokenAuth']
+
+      new_options = opts.merge(
+        :operation => :"UsersApi.users_remote_field_classes_list",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: UsersApi#users_remote_field_classes_list\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
     # Returns a `User` object with the given `id`.
     # @param x_account_token [String] Token identifying the end user.
     # @param id [String] 
     # @param [Hash] opts the optional parameters
     # @option opts [Boolean] :include_remote_data Whether to include the original data Merge fetched from the third-party to produce these models.
+    # @option opts [Boolean] :include_remote_fields Whether to include all remote fields, including fields that Merge did not map to common models, in a normalized format.
     # @return [User]
     def users_retrieve(x_account_token, id, opts = {})
       data, _status_code, _headers = users_retrieve_with_http_info(x_account_token, id, opts)
@@ -124,6 +279,7 @@ module MergeCRMClient
     # @param id [String] 
     # @param [Hash] opts the optional parameters
     # @option opts [Boolean] :include_remote_data Whether to include the original data Merge fetched from the third-party to produce these models.
+    # @option opts [Boolean] :include_remote_fields Whether to include all remote fields, including fields that Merge did not map to common models, in a normalized format.
     # @return [Array<(User, Integer, Hash)>] User data, response status code and response headers
     def users_retrieve_with_http_info(x_account_token, id, opts = {})
       if @api_client.config.debugging
@@ -143,6 +299,7 @@ module MergeCRMClient
       # query parameters
       query_params = opts[:query_params] || {}
       query_params[:'include_remote_data'] = opts[:'include_remote_data'] if !opts[:'include_remote_data'].nil?
+      query_params[:'include_remote_fields'] = opts[:'include_remote_fields'] if !opts[:'include_remote_fields'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
