@@ -11,5 +11,5 @@ OpenAPI Generator version: 5.1.1
 =end
 
 module MergeCRMClient
-  VERSION = '1.0.1'
+  VERSION = '1.0.3'
 end
