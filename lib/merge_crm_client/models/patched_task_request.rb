@@ -28,6 +28,9 @@ module MergeCRMClient
     # The task's account.
     attr_accessor :account
 
+    # The task's opportunity.
+    attr_accessor :opportunity
+
     # When the task is completed.
     attr_accessor :completed_date
 
@@ -50,6 +53,7 @@ module MergeCRMClient
         :'content' => :'content',
         :'owner' => :'owner',
         :'account' => :'account',
+        :'opportunity' => :'opportunity',
         :'completed_date' => :'completed_date',
         :'due_date' => :'due_date',
         :'status' => :'status',
@@ -71,6 +75,7 @@ module MergeCRMClient
         :'content' => :'String',
         :'owner' => :'String',
         :'account' => :'String',
+        :'opportunity' => :'String',
         :'completed_date' => :'Time',
         :'due_date' => :'Time',
         :'status' => :'TaskStatusEnum',
@@ -87,6 +92,7 @@ module MergeCRMClient
         :'content',
         :'owner',
         :'account',
+        :'opportunity',
         :'completed_date',
         :'due_date',
         :'status',
@@ -124,6 +130,10 @@ module MergeCRMClient
 
       if attributes.key?(:'account')
         self.account = attributes[:'account']
+      end
+
+      if attributes.key?(:'opportunity')
+        self.opportunity = attributes[:'opportunity']
       end
 
       if attributes.key?(:'completed_date')
@@ -179,6 +189,7 @@ module MergeCRMClient
           content == o.content &&
           owner == o.owner &&
           account == o.account &&
+          opportunity == o.opportunity &&
           completed_date == o.completed_date &&
           due_date == o.due_date &&
           status == o.status &&
@@ -196,7 +207,7 @@ module MergeCRMClient
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [subject, content, owner, account, completed_date, due_date, status, integration_params, linked_account_params, remote_fields].hash
+      [subject, content, owner, account, opportunity, completed_date, due_date, status, integration_params, linked_account_params, remote_fields].hash
     end
 
     # Builds the object from hash

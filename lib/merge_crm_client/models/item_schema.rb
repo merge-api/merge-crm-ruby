@@ -38,8 +38,8 @@ module MergeCRMClient
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'item_type' => :'Boolean',
-        :'item_format' => :'Boolean',
+        :'item_type' => :'ItemTypeEnum',
+        :'item_format' => :'ItemFormatEnum',
         :'item_choices' => :'Array<String>'
       }
     end

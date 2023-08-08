@@ -138,7 +138,7 @@ module MergeCRMClient
       if @api_client.config.client_side_validation && x_account_token.nil?
         fail ArgumentError, "Missing the required parameter 'x_account_token' when calling TasksApi.tasks_list"
       end
-      allowable_values = ["account", "owner", "owner,account"]
+      allowable_values = ["account", "account,opportunity", "opportunity", "owner", "owner,account", "owner,account,opportunity", "owner,opportunity"]
       if @api_client.config.client_side_validation && opts[:'expand'] && !allowable_values.include?(opts[:'expand'])
         fail ArgumentError, "invalid value for \"expand\", must be one of #{allowable_values}"
       end
@@ -516,7 +516,7 @@ module MergeCRMClient
       if @api_client.config.client_side_validation && id.nil?
         fail ArgumentError, "Missing the required parameter 'id' when calling TasksApi.tasks_retrieve"
       end
-      allowable_values = ["account", "owner", "owner,account"]
+      allowable_values = ["account", "account,opportunity", "opportunity", "owner", "owner,account", "owner,account,opportunity", "owner,opportunity"]
       if @api_client.config.client_side_validation && opts[:'expand'] && !allowable_values.include?(opts[:'expand'])
         fail ArgumentError, "invalid value for \"expand\", must be one of #{allowable_values}"
       end

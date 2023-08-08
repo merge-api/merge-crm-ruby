@@ -4,8 +4,8 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **item_type** | **Boolean** |  | [optional] |
-| **item_format** | **Boolean** |  | [optional] |
+| **item_type** | [**ItemTypeEnum**](ItemTypeEnum.md) |  | [optional] |
+| **item_format** | [**ItemFormatEnum**](ItemFormatEnum.md) |  | [optional] |
 | **item_choices** | **Array&lt;String&gt;** |  | [optional] |
 
 ## Example
