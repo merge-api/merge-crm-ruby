@@ -44,10 +44,10 @@ module MergeCRMClient
     # The third-party API ID of the matching object.
     attr_accessor :remote_id
 
-    attr_accessor :field_mappings
-
     # This is the datetime that this object was last updated by Merge
     attr_accessor :modified_at
+
+    attr_accessor :field_mappings
 
     attr_accessor :remote_data
 
@@ -67,8 +67,8 @@ module MergeCRMClient
         :'remote_was_deleted' => :'remote_was_deleted',
         :'id' => :'id',
         :'remote_id' => :'remote_id',
-        :'field_mappings' => :'field_mappings',
         :'modified_at' => :'modified_at',
+        :'field_mappings' => :'field_mappings',
         :'remote_data' => :'remote_data',
         :'remote_fields' => :'remote_fields'
       }
@@ -93,8 +93,8 @@ module MergeCRMClient
         :'remote_was_deleted' => :'Boolean',
         :'id' => :'String',
         :'remote_id' => :'String',
-        :'field_mappings' => :'Hash<String, Object>',
         :'modified_at' => :'Time',
+        :'field_mappings' => :'Hash<String, Object>',
         :'remote_data' => :'Array<RemoteData>',
         :'remote_fields' => :'Array<RemoteField>'
       }
@@ -179,14 +179,14 @@ module MergeCRMClient
         self.remote_id = attributes[:'remote_id']
       end
 
+      if attributes.key?(:'modified_at')
+        self.modified_at = attributes[:'modified_at']
+      end
+
       if attributes.key?(:'field_mappings')
         if (value = attributes[:'field_mappings']).is_a?(Hash)
           self.field_mappings = value
         end
-      end
-
-      if attributes.key?(:'modified_at')
-        self.modified_at = attributes[:'modified_at']
       end
 
       if attributes.key?(:'remote_data')
@@ -231,8 +231,8 @@ module MergeCRMClient
           remote_was_deleted == o.remote_was_deleted &&
           id == o.id &&
           remote_id == o.remote_id &&
-          field_mappings == o.field_mappings &&
           modified_at == o.modified_at &&
+          field_mappings == o.field_mappings &&
           remote_data == o.remote_data &&
           remote_fields == o.remote_fields
     end
@@ -246,7 +246,7 @@ module MergeCRMClient
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [first_name, last_name, account, addresses, email_addresses, phone_numbers, last_activity_at, remote_created_at, remote_was_deleted, id, remote_id, field_mappings, modified_at, remote_data, remote_fields].hash
+      [first_name, last_name, account, addresses, email_addresses, phone_numbers, last_activity_at, remote_created_at, remote_was_deleted, id, remote_id, modified_at, field_mappings, remote_data, remote_fields].hash
     end
 
     # Builds the object from hash

@@ -14,52 +14,13 @@ require 'date'
 require 'time'
 
 module MergeCRMClient
-  # # The Task Object ### Description The `Task` object is used to represent a task, such as a to-do item. ### Usage Example TODO
-  class TaskRequest
-    # The task's subject.
-    attr_accessor :subject
-
-    # The task's content.
-    attr_accessor :content
-
-    # The task's owner.
-    attr_accessor :owner
-
-    # The task's account.
-    attr_accessor :account
-
-    # The task's opportunity.
-    attr_accessor :opportunity
-
-    # When the task is completed.
-    attr_accessor :completed_date
-
-    # When the task is due.
-    attr_accessor :due_date
-
-    # The task's status.  * `OPEN` - OPEN * `CLOSED` - CLOSED
-    attr_accessor :status
-
-    attr_accessor :integration_params
-
-    attr_accessor :linked_account_params
-
-    attr_accessor :remote_fields
+  class AsyncPassthroughReciept
+    attr_accessor :async_passthrough_receipt_id
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'subject' => :'subject',
-        :'content' => :'content',
-        :'owner' => :'owner',
-        :'account' => :'account',
-        :'opportunity' => :'opportunity',
-        :'completed_date' => :'completed_date',
-        :'due_date' => :'due_date',
-        :'status' => :'status',
-        :'integration_params' => :'integration_params',
-        :'linked_account_params' => :'linked_account_params',
-        :'remote_fields' => :'remote_fields'
+        :'async_passthrough_receipt_id' => :'async_passthrough_receipt_id'
       }
     end
 
@@ -71,33 +32,13 @@ module MergeCRMClient
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'subject' => :'String',
-        :'content' => :'String',
-        :'owner' => :'String',
-        :'account' => :'String',
-        :'opportunity' => :'String',
-        :'completed_date' => :'Time',
-        :'due_date' => :'Time',
-        :'status' => :'TaskStatusEnum',
-        :'integration_params' => :'Hash<String, Object>',
-        :'linked_account_params' => :'Hash<String, Object>',
-        :'remote_fields' => :'Array<RemoteFieldRequest>'
+        :'async_passthrough_receipt_id' => :'String'
       }
     end
 
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
-        :'subject',
-        :'content',
-        :'owner',
-        :'account',
-        :'opportunity',
-        :'completed_date',
-        :'due_date',
-        :'status',
-        :'integration_params',
-        :'linked_account_params',
       ])
     end
 
@@ -105,65 +46,19 @@ module MergeCRMClient
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `MergeCRMClient::TaskRequest` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `MergeCRMClient::AsyncPassthroughReciept` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `MergeCRMClient::TaskRequest`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `MergeCRMClient::AsyncPassthroughReciept`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'subject')
-        self.subject = attributes[:'subject']
-      end
-
-      if attributes.key?(:'content')
-        self.content = attributes[:'content']
-      end
-
-      if attributes.key?(:'owner')
-        self.owner = attributes[:'owner']
-      end
-
-      if attributes.key?(:'account')
-        self.account = attributes[:'account']
-      end
-
-      if attributes.key?(:'opportunity')
-        self.opportunity = attributes[:'opportunity']
-      end
-
-      if attributes.key?(:'completed_date')
-        self.completed_date = attributes[:'completed_date']
-      end
-
-      if attributes.key?(:'due_date')
-        self.due_date = attributes[:'due_date']
-      end
-
-      if attributes.key?(:'status')
-        self.status = attributes[:'status']
-      end
-
-      if attributes.key?(:'integration_params')
-        if (value = attributes[:'integration_params']).is_a?(Hash)
-          self.integration_params = value
-        end
-      end
-
-      if attributes.key?(:'linked_account_params')
-        if (value = attributes[:'linked_account_params']).is_a?(Hash)
-          self.linked_account_params = value
-        end
-      end
-
-      if attributes.key?(:'remote_fields')
-        if (value = attributes[:'remote_fields']).is_a?(Array)
-          self.remote_fields = value
-        end
+      if attributes.key?(:'async_passthrough_receipt_id')
+        self.async_passthrough_receipt_id = attributes[:'async_passthrough_receipt_id']
       end
     end
 
@@ -171,12 +66,17 @@ module MergeCRMClient
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
+      if @async_passthrough_receipt_id.nil?
+        invalid_properties.push('invalid value for "async_passthrough_receipt_id", async_passthrough_receipt_id cannot be nil.')
+      end
+
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      return false if @async_passthrough_receipt_id.nil?
       true
     end
 
@@ -185,17 +85,7 @@ module MergeCRMClient
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          subject == o.subject &&
-          content == o.content &&
-          owner == o.owner &&
-          account == o.account &&
-          opportunity == o.opportunity &&
-          completed_date == o.completed_date &&
-          due_date == o.due_date &&
-          status == o.status &&
-          integration_params == o.integration_params &&
-          linked_account_params == o.linked_account_params &&
-          remote_fields == o.remote_fields
+          async_passthrough_receipt_id == o.async_passthrough_receipt_id
     end
 
     # @see the `==` method
@@ -207,7 +97,7 @@ module MergeCRMClient
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [subject, content, owner, account, opportunity, completed_date, due_date, status, integration_params, linked_account_params, remote_fields].hash
+      [async_passthrough_receipt_id].hash
     end
 
     # Builds the object from hash

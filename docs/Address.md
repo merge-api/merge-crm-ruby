@@ -24,7 +24,7 @@ instance = MergeCRMClient::Address.new(
   city: San Francisco,
   state: CA,
   postal_code: 94122,
-  country: USA,
+  country: US,
   address_type: Shipping,
   modified_at: 2021-10-16T00:00Z
 )

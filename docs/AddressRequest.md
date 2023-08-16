@@ -25,7 +25,7 @@ instance = MergeCRMClient::AddressRequest.new(
   city: San Francisco,
   state: CA,
   postal_code: 94122,
-  country: USA,
+  country: US,
   address_type: Shipping,
   integration_params: {&quot;unique_integration_field&quot;:&quot;unique_integration_field_value&quot;},
   linked_account_params: {&quot;unique_linked_account_field&quot;:&quot;unique_linked_account_field_value&quot;}
